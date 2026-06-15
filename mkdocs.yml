@@ -78,7 +78,7 @@ nav:
       - string/index.md
   - 数学:
       - math/index.md
-      - 抽象代数引入: math/abstract-algebra.md
+      - 抽象代数: math/abstract-algebra.md
   - 动态规划:
       - dp/index.md
   - 图论:

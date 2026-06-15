@@ -4,4 +4,4 @@
 
 ## 目录
 
-- [抽象代数引入](abstract-algebra.md)
+- [抽象代数](abstract-algebra.md)
