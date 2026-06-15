@@ -138,8 +138,12 @@ if ($LASTEXITCODE -ne 0) {
     Publish-WithGitHubApi
 }
 
+$oldErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
 & $gh api -X POST "repos/$repoFullName/pages" -f build_type=workflow *> $null
-if ($LASTEXITCODE -ne 0) {
+$pagesExitCode = $LASTEXITCODE
+$ErrorActionPreference = $oldErrorActionPreference
+if ($pagesExitCode -ne 0) {
     Write-Host "GitHub Pages may already be enabled. Continuing..."
 }
 
