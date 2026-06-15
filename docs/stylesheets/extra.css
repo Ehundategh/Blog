@@ -1,0 +1,19 @@
+:root {
+  --md-primary-fg-color: #3451b2;
+  --md-accent-fg-color: #00897b;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-weight: 700;
+}
+
+.md-typeset code {
+  font-size: 0.92em;
+}
+
+.md-typeset table:not([class]) {
+  font-size: 0.95em;
+}
+
