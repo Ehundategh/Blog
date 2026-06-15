@@ -30,7 +30,9 @@ function Invoke-GhApiJson {
 
     $tempFile = New-TemporaryFile
     try {
-        $Body | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath $tempFile -Encoding UTF8
+        $json = $Body | ConvertTo-Json -Depth 20
+        $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+        [IO.File]::WriteAllText($tempFile.FullName, $json, $utf8NoBom)
         $response = & $gh api -X $Method $Path --input $tempFile
         if ($LASTEXITCODE -ne 0) {
             throw "gh api $Method $Path failed with exit code $LASTEXITCODE"
