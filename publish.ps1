@@ -30,19 +30,19 @@ if ($LASTEXITCODE -ne 0) {
     throw "GitHub CLI is not authenticated."
 }
 
-& $gh repo view $repoFullName *> $null
-$repoExists = ($LASTEXITCODE -eq 0)
+$oldErrorActionPreference = $ErrorActionPreference
+$ErrorActionPreference = "Continue"
+& $gh repo create $repoFullName --public --source . --remote origin
+$createExitCode = $LASTEXITCODE
+$ErrorActionPreference = $oldErrorActionPreference
 
-if (-not $repoExists) {
-    & $gh repo create $repoFullName --public --source . --remote origin
-    if ($LASTEXITCODE -ne 0) {
-        throw "Failed to create GitHub repository $repoFullName."
-    }
-} else {
-    git -c "safe.directory=$safeDirectory" remote get-url origin *> $null
-    if ($LASTEXITCODE -ne 0) {
-        Invoke-Git remote add origin "https://github.com/$repoFullName.git"
-    }
+if ($createExitCode -ne 0) {
+    Write-Host "Repository may already exist. Ensuring origin remote is configured..."
+}
+
+git -c "safe.directory=$safeDirectory" remote get-url origin *> $null
+if ($LASTEXITCODE -ne 0) {
+    Invoke-Git remote add origin "https://github.com/$repoFullName.git"
 }
 
 git -c "safe.directory=$safeDirectory" log --oneline -1 *> $null
