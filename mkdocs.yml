@@ -70,8 +70,15 @@ nav:
   - 数据结构:
       - data-structure/index.md
       - ST 表: data-structure/st-table.md
+      - 线段树:
+          - data-structure/segment-tree/index.md
+          - 扫描线: data-structure/segment-tree/scanline.md
+          - 双半群模型: data-structure/segment-tree/double-semigroup.md
   - 字符串:
       - string/index.md
+  - 数学:
+      - math/index.md
+      - 抽象代数引入: math/abstract-algebra.md
   - 动态规划:
       - dp/index.md
   - 图论:

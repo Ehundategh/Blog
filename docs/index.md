@@ -6,6 +6,7 @@
 
 - [数据结构](data-structure/)
 - [字符串](string/)
+- [数学](math/)
 - [动态规划](dp/)
 - [图论](graph/)
 - [计算几何](geometry/)
