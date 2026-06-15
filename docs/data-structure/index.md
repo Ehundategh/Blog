@@ -5,3 +5,4 @@
 ## 目录
 
 - [ST 表](st-table.md)
+- [线段树](segment-tree/)
