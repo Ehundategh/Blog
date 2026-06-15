@@ -1,4 +1,4 @@
-# Gioush OI Notes
+# Gioush OI Website
 
 这是一个仿 OI Wiki 信息架构的个人算法博客，使用 MkDocs 和 Material for MkDocs 构建。
 
@@ -19,8 +19,10 @@ mkdocs serve
 
 ## 内容组织
 
-- `docs/data-structure/`：数据结构笔记。
-- `docs/algorithm/`：算法专题笔记。
-- `docs/solution/`：题解与复盘。
-- `docs/template/`：可复用代码模板。
-
+- `docs/data-structure/`：数据结构。
+- `docs/string/`：字符串。
+- `docs/dp/`：动态规划。
+- `docs/graph/`：图论。
+- `docs/geometry/`：计算几何。
+- `docs/solution/`：题目以及题解。
+- `docs/misc/`：杂项。
