@@ -11,36 +11,50 @@ if (-not (Test-Path -LiteralPath $gh)) {
 
 Set-Location -LiteralPath $PSScriptRoot
 
-git config user.name $repoOwner
-git config user.email "$repoOwner@users.noreply.github.com"
-git branch -M main
+$safeDirectory = (Resolve-Path -LiteralPath $PSScriptRoot).Path.Replace("\", "/")
+git config --global --add safe.directory $safeDirectory
+
+function Invoke-Git {
+    git -c "safe.directory=$safeDirectory" @args
+    if ($LASTEXITCODE -ne 0) {
+        throw "git $args failed with exit code $LASTEXITCODE"
+    }
+}
+
+Invoke-Git config user.name $repoOwner
+Invoke-Git config user.email "$repoOwner@users.noreply.github.com"
+Invoke-Git branch -M main
 
 & $gh auth status
-
-$repoExists = $false
-try {
-    & $gh repo view $repoFullName | Out-Null
-    $repoExists = $true
-} catch {
-    $repoExists = $false
+if ($LASTEXITCODE -ne 0) {
+    throw "GitHub CLI is not authenticated."
 }
+
+& $gh repo view $repoFullName *> $null
+$repoExists = ($LASTEXITCODE -eq 0)
 
 if (-not $repoExists) {
     & $gh repo create $repoFullName --public --source . --remote origin
-} elseif (-not (git remote get-url origin 2>$null)) {
-    git remote add origin "https://github.com/$repoFullName.git"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Failed to create GitHub repository $repoFullName."
+    }
+} else {
+    git -c "safe.directory=$safeDirectory" remote get-url origin *> $null
+    if ($LASTEXITCODE -ne 0) {
+        Invoke-Git remote add origin "https://github.com/$repoFullName.git"
+    }
 }
 
-if (-not (git log --oneline -1 2>$null)) {
-    git add .
-    git commit -m "init oi wiki style blog"
+git -c "safe.directory=$safeDirectory" log --oneline -1 *> $null
+if ($LASTEXITCODE -ne 0) {
+    Invoke-Git add .
+    Invoke-Git commit -m "init oi wiki style blog"
 }
 
-git push -u origin main
+Invoke-Git push -u origin main
 
-try {
-    & $gh api -X POST "repos/$repoFullName/pages" -f build_type=workflow | Out-Null
-} catch {
+& $gh api -X POST "repos/$repoFullName/pages" -f build_type=workflow *> $null
+if ($LASTEXITCODE -ne 0) {
     Write-Host "GitHub Pages may already be enabled. Continuing..."
 }
 
@@ -48,4 +62,3 @@ Write-Host ""
 Write-Host "Repository: https://github.com/$repoFullName"
 Write-Host "Actions:    https://github.com/$repoFullName/actions"
 Write-Host "Website:    https://$repoOwner.github.io/$repoName/"
-
