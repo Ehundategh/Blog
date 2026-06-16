@@ -83,6 +83,10 @@ nav:
       - 总览: dp/index.md
   - 图论:
       - 总览: graph/index.md
+      - 树上问题:
+          - 总览: graph/tree/index.md
+          - 树的直径: graph/tree/diameter.md
+          - 树的重心: graph/tree/centroid.md
   - 计算几何:
       - 总览: geometry/index.md
   - 题目以及题解:
