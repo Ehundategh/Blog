@@ -4,11 +4,11 @@
 
 ## 目录
 
-- [数据结构](data-structure/)
-- [字符串](string/)
-- [数学](math/)
-- [动态规划](dp/)
-- [图论](graph/)
-- [计算几何](geometry/)
-- [题目以及题解](solution/)
-- [杂项](misc/)
+- [数据结构](data-structure/index.md)
+- [字符串](string/index.md)
+- [数学](math/index.md)
+- [动态规划](dp/index.md)
+- [图论](graph/index.md)
+- [计算几何](geometry/index.md)
+- [题目以及题解](solution/index.md)
+- [杂项](misc/index.md)

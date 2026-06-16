@@ -10,7 +10,7 @@
 
 ### 线段树
 
-- [线段树](segment-tree/)
+- [线段树](segment-tree/index.md)
 
 线段树相关内容放在数据结构的线段树子目录下。
 

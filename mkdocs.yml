@@ -79,6 +79,10 @@ nav:
   - 数学:
       - 总览: math/index.md
       - 抽象代数: math/abstract-algebra.md
+      - 线性代数:
+          - 总览: math/linear-algebra/index.md
+          - 矩阵与线性方程组: math/linear-algebra/matrix-equations.md
+          - 线性空间与线性映射: math/linear-algebra/linear-map.md
       - 组合数学:
           - 总览: math/combinatorics/index.md
           - 容斥原理: math/combinatorics/inclusion-exclusion.md

@@ -192,7 +192,7 @@
 
 ???+ note "题目描述"
 
-    给定长度为 $n$ 的序列 $\{a_i\}$，$q$ 次询问，每次询问 $[l,r]$，求：
+    [HNOI2016 序列](https://www.luogu.com.cn/problem/P3246)：给定长度为 $n$ 的序列 $\{a_i\}$，$q$ 次询问，每次询问 $[l,r]$，求：
 
     $$\sum_{l\le x\le y\le r}\min_{i\in[x,y]}a_i$$
 

@@ -1,4 +1,4 @@
-# 容斥原理
+﻿# 容斥原理
 
 容斥原理对于大家并不陌生。最经典的结论是，对于两个集合 $A,B$，有：
 
@@ -239,7 +239,7 @@ $$
 
 ???+ note "题目描述"
 
-    给定四种面值分别为 $c_1,c_2,c_3,c_4$ 的硬币。
+    [洛谷 P1450](https://www.luogu.com.cn/problem/P1450)：给定四种面值分别为 $c_1,c_2,c_3,c_4$ 的硬币。
 
     小 A 进行了 $n$ 次购物，每次购物带了 $d_i$ 枚第 $i$ 种硬币，并想买价值为 $s$ 的东西。请输出每次购买的付款方式数量。
 
@@ -275,7 +275,7 @@ $$
 
 ???+ note "题目描述"
 
-    在平面直角坐标系的第一象限中，规定 $n,m$ 分别作为 $\sup x,\sup y$。
+    [洛谷 P1447](https://www.luogu.com.cn/problem/P1447)：在平面直角坐标系的第一象限中，规定 $n,m$ 分别作为 $\sup x,\sup y$。
 
     记整点 $(x,y)$ 与 $(0,0)$ 连线内部有 $k$ 个点，那么这个整点 $(x,y)$ 对答案的贡献就是 $2k+1$。求最终答案。
 
@@ -302,13 +302,13 @@ $$
     又由乘法原理：
 
     $$
-    \psi(k)=\left\lfloor\frac nk\right\rfloor\left\lfloor\frac mk\right\rfloor
+    \psi(k)=\left\lfloor\dfrac{n}{k}\right\rfloor\left\lfloor\dfrac{m}{k}\right\rfloor
     $$
 
     于是：
 
     $$
-    f(k)=\left\lfloor\frac nk\right\rfloor\left\lfloor\frac mk\right\rfloor-\sum_{i=2}f(ki)
+    f(k)=\left\lfloor\dfrac{n}{k}\right\rfloor\left\lfloor\dfrac{m}{k}\right\rfloor-\sum_{i=2}f(ki)
     $$
 
     令 $r=\min(n,m)$，倒着递推即可求出所有 $f(k)$。

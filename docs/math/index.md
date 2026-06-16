@@ -5,5 +5,6 @@
 ## 目录
 
 - [抽象代数](abstract-algebra.md)
-- [组合数学](combinatorics/)
+- [线性代数](linear-algebra/index.md)
+- [组合数学](combinatorics/index.md)
     - [容斥原理](combinatorics/inclusion-exclusion.md)

@@ -8,6 +8,6 @@
 
 ### 树上问题
 
-- [树上问题](tree/)
+- [树上问题](tree/index.md)
 - [树的直径](tree/diameter.md)
 - [树的重心](tree/centroid.md)

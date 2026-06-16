@@ -1,4 +1,4 @@
-# 树的直径
+﻿# 树的直径
 
 ## 定义
 
@@ -106,7 +106,7 @@
 
 ???+ note "题目描述"
 
-    给定一棵树，求一条长度不超过 $k$ 的链，使得不在链上的点到链的距离的最大值最小。
+    [SDOI2011 消防](https://www.luogu.com.cn/problem/P2491)：给定一棵树，求一条长度不超过 $k$ 的链，使得不在链上的点到链的距离的最大值最小。
 
     数据范围中，树节点个数 $1\le n\le 3\times 10^5$。
 
@@ -195,14 +195,14 @@
     又因为：
 
     $$
-    \operatorname{d}(a,x)\ge \frac{\operatorname{d}(a,b)}2,\quad
-    \operatorname{d}(y,c)\ge \frac{\operatorname{d}(c,d)}2
+    \operatorname{d}(a,x)\ge \dfrac{\operatorname{d}(a,b)}{2},\quad
+    \operatorname{d}(y,c)\ge \dfrac{\operatorname{d}(c,d)}{2}
     $$
 
     而 $a\to b$ 与 $c\to d$ 都是直径，长度相同，记为 $D$。于是：
 
     $$
-    \operatorname{d}(a,c)\ge \frac D2+\operatorname{d}(x,y)+\frac D2>D
+    \operatorname{d}(a,c)\ge \dfrac{D}{2}+\operatorname{d}(x,y)+\dfrac{D}{2}>D
     $$
 
     这与 $D$ 是直径长度矛盾。
@@ -215,18 +215,18 @@
 
 ??? proof "证明"
 
-    设直径长度为 $D$。对任意一条直径 $a\to b$，其中点定义为路径上到 $a,b$ 距离均为 $\frac D2$ 的位置。这个位置可能是一个点，也可能在某条边的内部。
+    设直径长度为 $D$。对任意一条直径 $a\to b$，其中点定义为路径上到 $a,b$ 距离均为 $\dfrac{D}{2}$ 的位置。这个位置可能是一个点，也可能在某条边的内部。
 
     反设存在两条直径 $a\to b$ 与 $c\to d$，它们的中点分别为 $p,q$，且 $p\ne q$。
 
     根据上一条定理，两条直径有重合部分。考虑树中连接 $p,q$ 的路径，长度为 $\operatorname{d}(p,q)>0$。
 
-    在直径 $a\to b$ 上，$p$ 到两个端点的距离均为 $\frac D2$；在直径 $c\to d$ 上，$q$ 到两个端点的距离均为 $\frac D2$。
+    在直径 $a\to b$ 上，$p$ 到两个端点的距离均为 $\dfrac{D}{2}$；在直径 $c\to d$ 上，$q$ 到两个端点的距离均为 $\dfrac{D}{2}$。
 
     从 $p$ 沿 $p\to q$ 走到 $q$ 后，至少可以选择 $c,d$ 中的一个端点，使得从 $p$ 到该端点的路径不经过 $p$ 在 $a\to b$ 上对应较短的一侧。于是可以构造出一条路径，其长度至少为：
 
     $$
-    \frac D2+\operatorname{d}(p,q)+\frac D2>D
+    \dfrac{D}{2}+\operatorname{d}(p,q)+\dfrac{D}{2}>D
     $$
 
     这与 $D$ 是直径长度矛盾。
