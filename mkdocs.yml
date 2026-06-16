@@ -68,24 +68,24 @@ extra_css:
 nav:
   - 首页: index.md
   - 数据结构:
-      - data-structure/index.md
+      - 总览: data-structure/index.md
       - ST 表: data-structure/st-table.md
       - 线段树:
-          - data-structure/segment-tree/index.md
+          - 总览: data-structure/segment-tree/index.md
           - 扫描线: data-structure/segment-tree/scanline.md
           - 双半群模型: data-structure/segment-tree/double-semigroup.md
   - 字符串:
-      - string/index.md
+      - 总览: string/index.md
   - 数学:
-      - math/index.md
+      - 总览: math/index.md
       - 抽象代数: math/abstract-algebra.md
   - 动态规划:
-      - dp/index.md
+      - 总览: dp/index.md
   - 图论:
-      - graph/index.md
+      - 总览: graph/index.md
   - 计算几何:
-      - geometry/index.md
+      - 总览: geometry/index.md
   - 题目以及题解:
-      - solution/index.md
+      - 总览: solution/index.md
   - 杂项:
-      - misc/index.md
+      - 总览: misc/index.md

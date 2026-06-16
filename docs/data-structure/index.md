@@ -4,7 +4,15 @@
 
 ## 目录
 
+### 基础结构
+
 - [ST 表](st-table.md)
+
+### 线段树
+
 - [线段树](segment-tree/)
-    - [扫描线](segment-tree/scanline.md)
-    - [双半群模型](segment-tree/double-semigroup.md)
+
+线段树相关内容放在数据结构的线段树子目录下。
+
+- [扫描线](segment-tree/scanline.md)
+- [双半群模型](segment-tree/double-semigroup.md)
