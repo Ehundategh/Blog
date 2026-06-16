@@ -80,6 +80,73 @@
 
     总时间复杂度为 $\mathcal{O}((n+q)\log n)$，空间复杂度为 $\mathcal{O}(n)$。
 
+??? example "代码"
+
+    ```cpp
+    #include <cstdio>
+    #include <cstring>
+    #include <algorithm>
+    #define ls Node[Now].LeftSon
+    #define rs Node[Now].RightSon
+    #define MAXN 200010
+    using namespace std;
+    struct query{
+        int l,r,Ans,p;
+    }Q[MAXN];
+    bool cmp1(query a,query b){if(a.r!=b.r) return a.r<b.r; return a.l<b.l;}
+    bool cmp2(query a,query b){return a.p<b.p;}
+    int cnt=0;
+    struct node{
+        int l,r,LeftSon,RightSon;
+        int Val;
+    }Node[MAXN<<3];
+    int Build(int l,int r){
+        int Now=++cnt;
+        if(l==r) {Node[Now].l=Node[Now].r=l;Node[Now].Val=0;return Now;}
+        Node[Now].Val=0;
+        Node[Now].l=l;Node[Now].r=r;
+        int Mid=(l+r)>>1;
+        ls=Build(l,Mid);
+        rs=Build(Mid+1,r);
+        return Now;
+    }
+    void Push_Up(int Now){
+        Node[Now].Val=min(Node[ls].Val,Node[rs].Val);
+        return;
+    }
+    void Modify(int Now,int Pos,int Val){
+        if(Node[Now].l==Node[Now].r){Node[Now].Val=Val; return;}
+        if(Pos<=Node[ls].r) Modify(ls,Pos,Val);
+        else if(Pos>=Node[rs].l) Modify(rs,Pos,Val);
+        Push_Up(Now);return;
+    }
+    int Query(int Now,int Val){
+        if(Node[Now].l==Node[Now].r) return Node[Now].l;
+        else if(Node[ls].Val<Val){return Query(ls,Val);}
+        else return Query(rs,Val);
+    }
+    int Line[MAXN],n,q,rn=0;
+    int main(){
+        scanf("%d%d",&n,&q);
+        for(int i=1;i<=n;i++)scanf("%d",&Line[i]);
+        for(int i=1;i<=q;i++){scanf("%d%d",&Q[i].l,&Q[i].r);Q[i].p=i;}
+        Build(1,200002);
+        sort(Q+1,Q+q+1,cmp1);
+        for(int i=1;i<=q;i++){
+            while(rn<Q[i].r){
+                rn++;
+                Modify(1,Line[rn]+1,rn);
+            }
+            Q[i].Ans=Query(1,Q[i].l);
+        }
+        sort(Q+1,Q+q+1,cmp2);
+        for(int i=1;i<=q;i++){
+            printf("%d\n",Q[i].Ans-1);
+        }
+        return 0;
+    }
+    ```
+
 ## 离线二维数点
 
 ???+ note "题目描述"
@@ -184,6 +251,129 @@
     每个位置在单调栈中至多进出一次。
 
     扫描右端点时，每次做一次区间推平和一次历史备份；每个询问在线段树上查询一次。因此总时间复杂度为 $\mathcal{O}((n+q)\log n)$，空间复杂度为 $\mathcal{O}(n)$。
+
+??? example "代码"
+
+    ```cpp
+    /*
+    Author:Ehundategh
+    Date:2026/3/26
+    Name:Array.cpp
+    You steal,I kill.
+    */
+    #include <stack>
+    #include <cstdio>
+    #include <cstring>
+    #include <algorithm>
+    #define ls Node[Now].LeftSon
+    #define rs Node[Now].RightSon
+    #define nv Node[Now].Val.Num
+    #define MAXN 100010
+    using namespace std;
+    stack <int> S;
+    struct query{
+        int l,r,p;
+        long long Ans;
+    }Q[MAXN];
+    bool cmp1(query a,query b){if(a.r!=b.r) return a.r<b.r; return a.l<b.l;}
+    bool cmp2(query a,query b){return a.p<b.p;}
+    int cnt=0;
+    struct Matrix{
+        long long Num[4][4];
+        void Init(){
+            memset(Num,0,sizeof(Num));
+        }
+    }I,Emp,Cop,Giv;
+    Matrix operator+(Matrix a,Matrix b) {
+        for (int i=1;i<=3;i++) for (int j=1;j<=3;j++) a.Num[i][j]+=b.Num[i][j];
+        return a;
+    }
+    Matrix operator*(Matrix a,Matrix b){
+        Matrix Ret;Ret.Init();
+        for(int i=1;i<=3;i++){for(int j=1;j<=3;j++){for(int k=1;k<=3;k++){Ret.Num[i][j]+=a.Num[i][k]*b.Num[k][j];}}}
+        return Ret;
+    }
+    struct node{
+        int l,r,LeftSon,RightSon;
+        Matrix Val,Tag;
+    }Node[MAXN<<3];
+    void Update(int Now) {
+        Node[Now].Val=Node[ls].Val+Node[rs].Val;
+        return;
+    }
+    int Build(int l,int r){
+        int Now=++cnt;
+        Node[Now].Val.Init();
+        Node[Now].Tag=I;
+        nv[3][1]=1;
+        if(l==r) {Node[Now].l=Node[Now].r=l;return Now;}
+        Node[Now].l=l;Node[Now].r=r;
+        int Mid=(l+r)>>1;
+        ls=Build(l,Mid);
+        rs=Build(Mid+1,r);
+        Update(Now);
+        return Now;
+    }
+    void Push_Down(int Now){
+        Node[ls].Val=Node[Now].Tag*Node[ls].Val;
+        Node[rs].Val=Node[Now].Tag*Node[rs].Val;
+        Node[ls].Tag=Node[Now].Tag*Node[ls].Tag;
+        Node[rs].Tag=Node[Now].Tag*Node[rs].Tag;
+        Node[Now].Tag=I;
+        return;
+    }
+    void Modify(int Now,int l,int r,Matrix Val){
+        if (Node[Now].l>=l&&Node[Now].r<=r) {
+            Node[Now].Tag=Val*Node[Now].Tag;
+            Node[Now].Val=Val*Node[Now].Val;
+            return;
+        }
+        else if (Node[Now].l>r||Node[Now].r<l) return;
+        Push_Down(Now);
+        Modify(ls,l,r,Val);
+        Modify(rs,l,r,Val);
+        Update(Now);
+        return;
+    }
+    void Copy(int r) {
+        Modify(1,1,r,Cop);
+    }
+    Matrix Query(int Now,int l,int r){
+        if (Node[Now].l>=l&&Node[Now].r<=r){return Node[Now].Val;}
+        else if (Node[Now].l>r||Node[Now].r<l) return Emp;
+        Push_Down(Now);
+        return Query(ls,l,r)+Query(rs,l,r);
+    }
+    int Line[MAXN],n,q,rn=0;
+    int main(){
+        I.Init();I.Num[1][1]=I.Num[2][2]=I.Num[3][3]=1;Emp.Init();
+        Cop=I; Cop.Num[2][1]=1; Giv=I;
+        Giv.Num[1][1]=0;
+        Line[0]=-2e9-1;
+        scanf("%d%d",&n,&q);
+        Build(1,n);
+        for (int i=1;i<=n;i++) scanf("%d",&Line[i]);
+        for (int i=1;i<=q;i++) {
+            scanf("%d%d",&Q[i].l,&Q[i].r);Q[i].p=i;
+        }
+        S.push(0);
+        sort(Q+1,Q+q+1,cmp1);
+        for (int i=1;i<=q;i++) {
+            while (rn<Q[i].r) {
+                rn++;
+                while (Line[S.top()]>=Line[rn]) {
+                    S.pop();
+                }Giv.Num[1][3]=Line[rn];
+                Modify(1,S.top()+1,rn,Giv);
+                Copy(rn);
+                S.push(rn);
+            }
+            Q[i].Ans=Query(1,Q[i].l,rn).Num[2][1];
+        }
+        sort(Q+1,Q+q+1,cmp2);
+        for (int i=1;i<=q;i++){printf("%lld\n",Q[i].Ans);}
+    }
+    ```
 
 ## 结语
 
