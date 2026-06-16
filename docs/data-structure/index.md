@@ -6,3 +6,5 @@
 
 - [ST 表](st-table.md)
 - [线段树](segment-tree/)
+    - [扫描线](segment-tree/scanline.md)
+    - [双半群模型](segment-tree/double-semigroup.md)
