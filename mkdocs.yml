@@ -79,6 +79,9 @@ nav:
   - 数学:
       - 总览: math/index.md
       - 抽象代数: math/abstract-algebra.md
+      - 组合数学:
+          - 总览: math/combinatorics/index.md
+          - 容斥原理: math/combinatorics/inclusion-exclusion.md
   - 动态规划:
       - 总览: dp/index.md
   - 图论:

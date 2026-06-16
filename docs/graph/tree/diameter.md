@@ -173,6 +173,62 @@
 
     对于正权边的树，所有的直径都有重合部分。
 
+??? proof "证明"
+
+    设存在两条完全不相交的直径 $a\to b$ 与 $c\to d$。由于树连通，存在唯一一条路径连接这两条直径，设其在 $a\to b$ 上的端点为 $x$，在 $c\to d$ 上的端点为 $y$。
+
+    不妨设：
+
+    $$
+    \operatorname{d}(a,x)\ge \operatorname{d}(b,x),\quad
+    \operatorname{d}(c,y)\ge \operatorname{d}(d,y)
+    $$
+
+    由于边权为正，$\operatorname{d}(x,y)>0$。
+
+    那么路径 $a\to c$ 的长度为：
+
+    $$
+    \operatorname{d}(a,c)=\operatorname{d}(a,x)+\operatorname{d}(x,y)+\operatorname{d}(y,c)
+    $$
+
+    又因为：
+
+    $$
+    \operatorname{d}(a,x)\ge \frac{\operatorname{d}(a,b)}2,\quad
+    \operatorname{d}(y,c)\ge \frac{\operatorname{d}(c,d)}2
+    $$
+
+    而 $a\to b$ 与 $c\to d$ 都是直径，长度相同，记为 $D$。于是：
+
+    $$
+    \operatorname{d}(a,c)\ge \frac D2+\operatorname{d}(x,y)+\frac D2>D
+    $$
+
+    这与 $D$ 是直径长度矛盾。
+
+    因此两条直径不可能完全不相交，所有直径之间都至少有公共部分。进一步看所有直径的公共部分，若为空，则可以取两条直径使得它们在公共路径上的相交被断开，同样得到上述矛盾。因此所有直径都有重合部分。
+
 ??? note "定理"
 
     对于正权边的树，所有直径的中点必定重合，中点可能在某条边的内部。
+
+??? proof "证明"
+
+    设直径长度为 $D$。对任意一条直径 $a\to b$，其中点定义为路径上到 $a,b$ 距离均为 $\frac D2$ 的位置。这个位置可能是一个点，也可能在某条边的内部。
+
+    反设存在两条直径 $a\to b$ 与 $c\to d$，它们的中点分别为 $p,q$，且 $p\ne q$。
+
+    根据上一条定理，两条直径有重合部分。考虑树中连接 $p,q$ 的路径，长度为 $\operatorname{d}(p,q)>0$。
+
+    在直径 $a\to b$ 上，$p$ 到两个端点的距离均为 $\frac D2$；在直径 $c\to d$ 上，$q$ 到两个端点的距离均为 $\frac D2$。
+
+    从 $p$ 沿 $p\to q$ 走到 $q$ 后，至少可以选择 $c,d$ 中的一个端点，使得从 $p$ 到该端点的路径不经过 $p$ 在 $a\to b$ 上对应较短的一侧。于是可以构造出一条路径，其长度至少为：
+
+    $$
+    \frac D2+\operatorname{d}(p,q)+\frac D2>D
+    $$
+
+    这与 $D$ 是直径长度矛盾。
+
+    因此所有直径的中点必定重合。

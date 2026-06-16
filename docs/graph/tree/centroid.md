@@ -4,7 +4,7 @@
 
 树的重心是一个节点，满足删去重心后，剩余的每个连通块大小均不超过原树的一半。
 
-也就是说，若树大小为 $n$，删去节点 $u$ 后得到若干个连通块，记其中最大连通块大小为 $mx_u$。若 $mx_u\le \frac n2$，则 $u$ 是树的重心。
+也就是说，若树大小为 $n$，删去节点 $u$ 后得到若干个连通块，记其中最大连通块大小为 $\operatorname{MaxSize}(u)$。若 $\operatorname{MaxSize}(u)\le \frac n2$，则 $u$ 是树的重心。
 
 ## 求法
 
@@ -17,21 +17,21 @@
 
 ??? success "解法"
 
-    对树做一遍 $\texttt{DFS}$，求出每个点的子树大小 $siz_u$。
+    对树做一遍 $\texttt{DFS}$，求出每个点的子树大小 $\operatorname{Size}(u)$。
 
-    对于节点 $u$，删去 $u$ 后，每个儿子 $v$ 对应一个大小为 $siz_v$ 的连通块；父亲方向对应的连通块大小为 $n-siz_u$。
+    对于节点 $u$，删去 $u$ 后，每个儿子 $v$ 对应一个大小为 $\operatorname{Size}(v)$ 的连通块；父亲方向对应的连通块大小为 $n-\operatorname{Size}(u)$。
 
     因此：
 
     $$
-    mx_u=\max\left(n-siz_u,\max_{v\in\operatorname{son}(u)}siz_v\right)
+    \operatorname{MaxSize}(u)=\max\left(n-\operatorname{Size}(u),\max_{v\in\operatorname{son}(u)}\operatorname{Size}(v)\right)
     $$
 
-    找到使 $mx_u$ 最小的点即可。若最小值不超过 $\frac n2$，该点就是重心。
+    找到使 $\operatorname{MaxSize}(u)$ 最小的点即可。若最小值不超过 $\frac n2$，该点就是重心。
 
 ??? abstract "复杂度分析"
 
-    一次 $\texttt{DFS}$ 即可求出所有 $siz$ 和 $mx$，时间复杂度为 $\mathcal{O}(n)$，空间复杂度为 $\mathcal{O}(n)$。
+    一次 $\texttt{DFS}$ 即可求出所有 $\operatorname{Size}$ 和 $\operatorname{MaxSize}$，时间复杂度为 $\mathcal{O}(n)$，空间复杂度为 $\mathcal{O}(n)$。
 
 ## 性质
 
