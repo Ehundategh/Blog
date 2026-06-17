@@ -357,9 +357,137 @@
 
     但是若干个一次函数复合后仍然是一次函数。因此可以考虑扩大维护对象，使常数项也成为状态的一部分。
 
-??? success "表示矩阵方式"
+??? success "表示矩阵方式：维护函数系数"
 
-    为了把一次函数中的平移项也写进线性映射，我们不直接在一维空间中维护 $x$，而是把状态扩成二维向量：
+    先保留最自然的表示矩阵理解。
+
+    考虑次数不超过 $1$ 的多项式线性空间：
+
+    $$
+    V=\operatorname{span}\{1,x\}
+    $$
+
+    取定基 $\{1,x\}$。对任意一次函数：
+
+    $$
+    p(x)=ax+b
+    $$
+
+    其坐标向量记为：
+
+    $$
+    \boldsymbol{c}(p)=
+    \begin{pmatrix}
+    b\\a
+    \end{pmatrix}
+    $$
+
+    现在定义线性映射 $\boldsymbol{\varphi}_i$：
+
+    $$
+    \boldsymbol{\varphi}_i(p)=p\circ f_i
+    $$
+
+    也就是把 $p(x)$ 中的 $x$ 替换成 $f_i(x)=k_ix+b_i$。
+
+    由于：
+
+    $$
+    \boldsymbol{\varphi}_i(1)=1
+    $$
+
+    $$
+    \boldsymbol{\varphi}_i(x)=k_ix+b_i
+    $$
+
+    所以 $\boldsymbol{\varphi}_i$ 在基 $\{1,x\}$ 下的表示矩阵为：
+
+    $$
+    \boldsymbol{R}_i=
+    \begin{pmatrix}
+    1&b_i\\
+    0&k_i
+    \end{pmatrix}
+    $$
+
+    对一个函数 $p(x)=ax+b$，有：
+
+    $$
+    \boldsymbol{R}_i
+    \begin{pmatrix}
+    b\\a
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    b+ab_i\\
+    ak_i
+    \end{pmatrix}
+    $$
+
+    对应的函数正是：
+
+    $$
+    p(f_i(x))=a(k_ix+b_i)+b
+    $$
+
+??? success "表示矩阵方式的乘法顺序"
+
+    题目要求的是：
+
+    $$
+    f_r\circ f_{r-1}\circ\cdots\circ f_l
+    $$
+
+    而 $\boldsymbol{R}_i$ 表示的是右复合：
+
+    $$
+    p\mapsto p\circ f_i
+    $$
+
+    因此若从恒等函数 $p(x)=x$ 出发，要得到 $f_r\circ\cdots\circ f_l$，应当依次右复合：
+
+    $$
+    f_r,\ f_{r-1},\ \ldots,\ f_l
+    $$
+
+    于是对应的矩阵乘积为：
+
+    $$
+    \boldsymbol{R}_{l,r}
+    =
+    \boldsymbol{R}_l\boldsymbol{R}_{l+1}\cdots\boldsymbol{R}_r
+    $$
+
+    注意这里的指标顺序和式子中函数复合顺序看起来相反，但这是因为我们维护的是“当前函数再右复合一个函数”。
+
+    在线段树中，叶子 $i$ 存 $\boldsymbol{R}_i$。若左儿子维护 $\boldsymbol{R}_{L,mid}$，右儿子维护 $\boldsymbol{R}_{mid+1,R}$，则父亲维护：
+
+    $$
+    \boldsymbol{R}_{L,R}
+    =
+    \boldsymbol{R}_{L,mid}\boldsymbol{R}_{mid+1,R}
+    $$
+
+    也就是左儿子矩阵乘右儿子矩阵。
+
+    最后把 $\boldsymbol{R}_{l,r}$ 作用到恒等函数 $x$ 的坐标向量 $(0,1)^T$ 上，得到：
+
+    $$
+    \boldsymbol{R}_{l,r}
+    \begin{pmatrix}
+    0\\1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    B\\A
+    \end{pmatrix}
+    $$
+
+    则复合函数为 $Ax+B$，代入询问中的 $x$ 即可得到答案。
+
+??? success "齐次坐标方式：维护输入状态"
+
+    另一种做法是直接维护输入值如何变化。把状态扩成二维向量：
 
     $$
     \begin{pmatrix}
@@ -367,24 +495,10 @@
     \end{pmatrix}
     $$
 
-    设线性空间为 $\mathbb{K}^2$，取标准基：
+    设线性空间为 $\mathbb{K}^2$，取标准基。对一次函数 $f_i(x)=k_ix+b_i$，定义线性映射 $\boldsymbol{\varphi}_i$：
 
     $$
-    \boldsymbol{e}_1=
-    \begin{pmatrix}
-    1\\0
-    \end{pmatrix},
-    \quad
-    \boldsymbol{e}_2=
-    \begin{pmatrix}
-    0\\1
-    \end{pmatrix}
-    $$
-
-    对一次函数 $f_i(x)=k_ix+b_i$，定义线性映射 $\boldsymbol{\Phi}_i$：
-
-    $$
-    \boldsymbol{\Phi}_i
+    \boldsymbol{\varphi}_i
     \begin{pmatrix}
     u\\v
     \end{pmatrix}
@@ -395,21 +509,7 @@
     \end{pmatrix}
     $$
 
-    那么：
-
-    $$
-    \boldsymbol{\Phi}_i(\boldsymbol{e}_1)=
-    \begin{pmatrix}
-    k_i\\0
-    \end{pmatrix},
-    \quad
-    \boldsymbol{\Phi}_i(\boldsymbol{e}_2)=
-    \begin{pmatrix}
-    b_i\\1
-    \end{pmatrix}
-    $$
-
-    因此 $\boldsymbol{\Phi}_i$ 在标准基下的表示矩阵为：
+    其在标准基下的表示矩阵为：
 
     $$
     \boldsymbol{F}_i=
@@ -432,61 +532,42 @@
     \end{pmatrix}
     $$
 
-    这就是一次函数 $f_i$ 对状态的作用。
-
-??? warning "一个容易混淆的写法"
-
-    如果考虑多项式空间 $V=\operatorname{span}\{1,x\}$，并定义：
-
-    $$
-    \boldsymbol{\psi}_i(1)=1,\quad
-    \boldsymbol{\psi}_i(x)=k_ix+b_i
-    $$
-
-    那么它的表示矩阵是：
-
-    $$
-    \begin{pmatrix}
-    1&b_i\\
-    0&k_i
-    \end{pmatrix}
-    $$
-
-    但这个映射对多项式 $p(x)$ 的作用是：
-
-    $$
-    p(x)\mapsto p(k_ix+b_i)
-    $$
-
-    也就是右复合 $p\circ f_i$。
-
-    题目中“$x$ 按顺序经过 $f_l,\ldots,f_r$”对应的是：
-
-    $$
-    f_r\circ f_{r-1}\circ\cdots\circ f_l
-    $$
-
-    这是不断左复合。因此这个多项式空间上的写法不能直接拿来当成题目的维护矩阵，除非额外把复合方向重新调整清楚。
+    这就是一次函数 $f_i$ 对具体输入状态的作用。
 
 ??? success "两种视角的相同点"
 
-    现在可以看出，真正用于本题的表示矩阵就是齐次状态上的表示矩阵：
+    表示矩阵方式和齐次坐标方式都能做这道题，它们的相同点是：都把一次函数复合转化成了矩阵乘法。
+
+    不同点在于维护对象不同：
+
+    - 表示矩阵方式维护的是函数系数，状态是 $p(x)=ax+b$ 的坐标向量 $(b,a)^T$。
+    - 齐次坐标方式维护的是输入状态，状态是 $(x,1)^T$。
+
+    因此它们的线段树合并方向也不同。
+
+    表示矩阵方式中，区间矩阵是：
 
     $$
-    \boldsymbol{F}_i=
-    \begin{pmatrix}
-    k_i&b_i\\
-    0&1
-    \end{pmatrix}
+    \boldsymbol{R}_{l,r}
+    =
+    \boldsymbol{R}_l\boldsymbol{R}_{l+1}\cdots\boldsymbol{R}_r
     $$
 
-    它和一般表示矩阵理论的关系是：我们选定了 $\mathbb{K}^2$ 的标准基，并把一次函数作用在扩展状态 $(x,1)^T$ 上。
+    合并是左儿子乘右儿子。
 
-    它和“多项式空间 $\{1,x\}$”那种写法的相同点是：都把一次函数相关的操作转化成了矩阵乘法。
+    齐次坐标方式中，区间矩阵是：
 
-    不同点是：齐次状态矩阵维护的是数值状态的左复合转移，正好对应题目顺序；多项式空间中令 $x\mapsto kx+b$ 的表示矩阵维护的是右复合。
+    $$
+    \boldsymbol{F}_{l,r}
+    =
+    \boldsymbol{F}_r\boldsymbol{F}_{r-1}\cdots\boldsymbol{F}_l
+    $$
 
-??? success "线段树维护"
+    合并是右儿子乘左儿子。
+
+    这两个方向都可以成立，前提是维护对象和合并方向必须对应。
+
+??? success "线段树维护：齐次坐标方式"
 
     令区间 $[l,r]$ 的矩阵为：
 
