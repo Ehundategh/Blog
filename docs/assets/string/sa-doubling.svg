@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="420" viewBox="0 0 920 420">
+  <style>
+    .bg{fill:#ffffff}
+    .box{fill:#f8fafc;stroke:#64748b;stroke-width:1.5}
+    .hi{fill:#eef2ff;stroke:#4f46e5;stroke-width:1.8}
+    .text{font-family:"华文中宋","STZhongsong","SimSun",serif;font-size:20px;fill:#111827}
+    .small{font-family:"华文中宋","STZhongsong","SimSun",serif;font-size:17px;fill:#334155}
+    .math{font-family:"Latin Modern Math","Cambria Math","Times New Roman",serif;font-size:19px;fill:#1e293b}
+    .arrow{stroke:#475569;stroke-width:2;marker-end:url(#arrow)}
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="920" height="420"/>
+  <text class="text" x="36" y="42">倍增求后缀数组：从长度</text>
+  <text class="math" x="300" y="42">k</text>
+  <text class="text" x="318" y="42">的排名推出长度</text>
+  <text class="math" x="470" y="42">2k</text>
+  <text class="text" x="506" y="42">的排名</text>
+
+  <text class="small" x="56" y="92">位置</text>
+  <text class="small" x="150" y="92">后缀</text>
+  <text class="math" x="302" y="92">Rank_i</text>
+  <text class="math" x="428" y="92">Rank_{i+k}</text>
+  <text class="small" x="590" y="92">二元组</text>
+
+  <rect class="box" x="40" y="112" width="790" height="54" rx="6"/>
+  <text class="math" x="66" y="146">i=1</text>
+  <text class="math" x="150" y="146">ababa</text>
+  <text class="math" x="318" y="146">1</text>
+  <text class="math" x="466" y="146">2</text>
+  <text class="math" x="590" y="146">(1,2)</text>
+
+  <rect class="hi" x="40" y="178" width="790" height="54" rx="6"/>
+  <text class="math" x="66" y="212">i=2</text>
+  <text class="math" x="150" y="212">baba</text>
+  <text class="math" x="318" y="212">2</text>
+  <text class="math" x="466" y="212">1</text>
+  <text class="math" x="590" y="212">(2,1)</text>
+
+  <rect class="box" x="40" y="244" width="790" height="54" rx="6"/>
+  <text class="math" x="66" y="278">i=3</text>
+  <text class="math" x="150" y="278">aba</text>
+  <text class="math" x="318" y="278">1</text>
+  <text class="math" x="466" y="278">2</text>
+  <text class="math" x="590" y="278">(1,2)</text>
+
+  <line class="arrow" x1="215" y1="330" x2="705" y2="330"/>
+  <text class="small" x="250" y="365">按二元组排序后重新编号，得到新一轮</text>
+  <text class="math" x="596" y="365">Rank</text>
+  <text class="small" x="646" y="365">，然后令</text>
+  <text class="math" x="728" y="365">k\leftarrow 2k</text>
+</svg>

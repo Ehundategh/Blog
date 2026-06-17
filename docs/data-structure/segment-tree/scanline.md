@@ -259,7 +259,6 @@
     Author:Ehundategh
     Date:2026/3/26
     Name:Array.cpp
-    You steal,I kill.
     */
     #include <stack>
     #include <cstdio>

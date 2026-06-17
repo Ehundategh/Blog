@@ -32,7 +32,7 @@ $$
 \operatorname{Hash}(s)=\operatorname{PreHash}(n)
 $$
 
-这里的 $p$ 一般取一个素数，例如 $131,13331,20070903$ 等；$\operatorname{Mod}$ 也通常取一个大素数。
+这里的 $p$ 一般取一个素数，例如 $131,13331,19460817$ 等；$\operatorname{Mod}$ 也通常取一个大素数。
 
 ## 子串 Hash
 

@@ -91,6 +91,7 @@ nav:
           - 容斥原理: math/combinatorics/inclusion-exclusion.md
   - 动态规划:
       - 总览: dp/index.md
+      - 单调队列优化 DP: dp/monotone-queue.md
   - 图论:
       - 总览: graph/index.md
       - 树上问题:
