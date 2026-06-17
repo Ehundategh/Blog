@@ -78,6 +78,7 @@ nav:
   - 字符串:
       - 总览: string/index.md
       - 字符串 Hash: string/hash.md
+      - 后缀数组: string/suffix-array.md
   - 数学:
       - 总览: math/index.md
       - 抽象代数: math/abstract-algebra.md

@@ -7,3 +7,4 @@
 ## 目录
 
 - [字符串 Hash](hash.md)
+- [后缀数组](suffix-array.md)
