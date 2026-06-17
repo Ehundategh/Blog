@@ -18,8 +18,12 @@
   max-width: 100%;
 }
 
-.md-typeset .highlight pre {
+.md-typeset .highlight {
   overflow-x: auto;
+}
+
+.md-typeset .highlight pre {
+  overflow: visible;
   white-space: pre;
 }
 
@@ -28,8 +32,8 @@
   overflow-x: auto;
 }
 
-.md-typeset details .highlight pre {
-  margin: 0;
+.md-typeset .highlighttable {
+  min-width: max-content;
 }
 
 .md-typeset details code {

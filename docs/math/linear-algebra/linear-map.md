@@ -72,6 +72,32 @@
 
     这个结论的意义在于：只要取定了一组基，线性空间中的元素就可以用一个普通向量来表示。
 
+??? proof "证明"
+
+    若 $\{\boldsymbol{e}_1,\boldsymbol{e}_2,\ldots,\boldsymbol{e}_n\}$ 是一组基，那么它本身就是极大无关组，所以显然线性无关。
+
+    接下来说明任意 $\boldsymbol{\alpha}\in V$ 都能被这组基线性表示。若不能表示，那么把 $\boldsymbol{\alpha}$ 加入这组向量后，仍然线性无关，否则 $\boldsymbol{\alpha}$ 就可以由原向量组表示。这与极大无关组矛盾。
+
+    反过来，若一个 $n$ 个向量的向量组线性无关，由于 $\operatorname{dim}V=n$，它已经达到无关组大小的上界，所以是极大无关组，也就是一组基。
+
+    最后说明表示唯一。若：
+
+    $$
+    \boldsymbol{\alpha}
+    =
+    \sum_{i=1}^{n}k_i\boldsymbol{e}_i
+    =
+    \sum_{i=1}^{n}l_i\boldsymbol{e}_i
+    $$
+
+    两式相减，有：
+
+    $$
+    \sum_{i=1}^{n}(k_i-l_i)\boldsymbol{e}_i=\boldsymbol{0}
+    $$
+
+    由于这组基线性无关，只能 $k_i-l_i=0$，即 $k_i=l_i$。
+
 ## 线性映射
 
 ???+ note "定义"
@@ -177,6 +203,18 @@
     \boldsymbol{I}_{V}
     $$
 
+??? proof "证明"
+
+    第一个式子本质上来自复合的结合律。$\boldsymbol{\varphi}^n$ 表示连续复合 $n$ 次 $\boldsymbol{\varphi}$，$\boldsymbol{\varphi}^m$ 表示连续复合 $m$ 次 $\boldsymbol{\varphi}$，两者再复合就是连续复合 $n+m$ 次，因此：
+
+    $$
+    \boldsymbol{\varphi}^n\circ\boldsymbol{\varphi}^m
+    =
+    \boldsymbol{\varphi}^{n+m}
+    $$
+
+    对逆映射，由定义可知 $\boldsymbol{\varphi}^{-1}$ 是能够撤销 $\boldsymbol{\varphi}$ 的映射。因此先做 $\boldsymbol{\varphi}$ 再做 $\boldsymbol{\varphi}^{-1}$，或者先做 $\boldsymbol{\varphi}^{-1}$ 再做 $\boldsymbol{\varphi}$，都会回到原向量，即恒等映射。
+
 ## 表示矩阵
 
 ???+ note "定义"
@@ -225,6 +263,30 @@
 
     也就是说，在线性空间中处理线性映射，取定基以后就可以转化成普通的矩阵乘向量。
 
+??? proof "证明"
+
+    设：
+
+    $$
+    \boldsymbol{\alpha}
+    =
+    \sum_{i=1}^{n}x_i\boldsymbol{e}_i
+    $$
+
+    根据线性映射的定义，有：
+
+    $$
+    \boldsymbol{\varphi}(\boldsymbol{\alpha})
+    =
+    \sum_{i=1}^{n}x_i\boldsymbol{\varphi}(\boldsymbol{e}_i)
+    $$
+
+    而每个 $\boldsymbol{\varphi}(\boldsymbol{e}_i)$ 已经在定义表示矩阵时写成了基的线性组合。把这些式子代入并合并同类项，得到的每个坐标正是矩阵 $\boldsymbol{M}$ 与坐标向量 $\boldsymbol{x}$ 相乘的结果，所以：
+
+    $$
+    \boldsymbol{y}=\boldsymbol{M}\boldsymbol{x}
+    $$
+
 ??? note "复合映射"
 
     对若干个线性映射 $\boldsymbol{\varphi}_1,\boldsymbol{\varphi}_2,\ldots,\boldsymbol{\varphi}_m$，设对应表示矩阵分别为 $\boldsymbol{M}_1,\boldsymbol{M}_2,\ldots,\boldsymbol{M}_m$。
@@ -246,6 +308,26 @@
     $$
 
     可以发现，复合映射的顺序会原样反映在矩阵乘积的顺序上。
+
+??? proof "证明"
+
+    先考虑两个映射。设 $\boldsymbol{\varphi}_1,\boldsymbol{\varphi}_2$ 的表示矩阵分别为 $\boldsymbol{M}_1,\boldsymbol{M}_2$。
+
+    若 $\boldsymbol{\alpha}$ 的坐标向量为 $\boldsymbol{x}$，则 $\boldsymbol{\varphi}_1(\boldsymbol{\alpha})$ 的坐标向量为：
+
+    $$
+    \boldsymbol{M}_1\boldsymbol{x}
+    $$
+
+    再作用 $\boldsymbol{\varphi}_2$ 后，坐标向量变为：
+
+    $$
+    \boldsymbol{M}_2(\boldsymbol{M}_1\boldsymbol{x})
+    =
+    \boldsymbol{M}_2\boldsymbol{M}_1\boldsymbol{x}
+    $$
+
+    于是 $\boldsymbol{\varphi}_2\boldsymbol{\varphi}_1$ 的表示矩阵就是 $\boldsymbol{M}_2\boldsymbol{M}_1$。多个映射时重复使用这个结论即可。
 
 ## 例子：一次函数复合
 
@@ -358,7 +440,95 @@
 
     这里额外加入的第二维 $1$，本质上就是为了给平移项 $b_i$ 留出位置。
 
-??? success "线段树维护"
+??? success "两种矩阵的关系"
+
+    上面两种写法看起来相近，但维护的对象并不相同。
+
+    表示矩阵方式中，我们考虑的是多项式空间 $V$ 上的线性映射。状态向量是多项式 $ax+b$ 的坐标向量 $(b,a)^T$，矩阵：
+
+    $$
+    \boldsymbol{M}_i=
+    \begin{pmatrix}
+    1&b_i\\
+    0&k_i
+    \end{pmatrix}
+    $$
+
+    表示的是把多项式 $x$ 映到 $k_ix+b_i$，并把常数 $1$ 映到 $1$。
+
+    齐次坐标方式中，我们考虑的是具体的数值状态。状态向量是 $(x,1)^T$，矩阵：
+
+    $$
+    \boldsymbol{F}_i=
+    \begin{pmatrix}
+    k_i&b_i\\
+    0&1
+    \end{pmatrix}
+    $$
+
+    表示的是把当前数值 $x$ 直接变为 $k_ix+b_i$。
+
+    它们的相同点是：都把一次函数复合转化成了矩阵乘法，且复合顺序完全一致。对于 $f_l,f_{l+1},\ldots,f_r$，最终矩阵都应当按照：
+
+    $$
+    \text{右端函数矩阵}\times\cdots\times\text{左端函数矩阵}
+    $$
+
+    的顺序相乘。
+
+    它们的不同点是：表示矩阵方式维护的是复合后得到的一次函数的系数；齐次坐标方式维护的是把输入值代入之后如何转移。前者查询后还需要把矩阵作用到 $(0,1)^T$ 得到函数系数，后者直接把矩阵作用到 $(x,1)^T$ 得到答案。
+
+??? success "线段树维护：表示矩阵方式"
+
+    先考虑表示矩阵方式。
+
+    令：
+
+    $$
+    \boldsymbol{M}_{l,r}
+    =
+    \boldsymbol{M}_r\boldsymbol{M}_{r-1}\cdots\boldsymbol{M}_l
+    $$
+
+    则 $\boldsymbol{M}_{l,r}$ 表示 $f_l,f_{l+1},\ldots,f_r$ 依次复合后，在基 $\{1,x\}$ 下对应的表示矩阵。
+
+    若：
+
+    $$
+    \boldsymbol{M}_{l,r}
+    =
+    \begin{pmatrix}
+    A&B\\
+    0&C
+    \end{pmatrix}
+    $$
+
+    那么把它作用到 $x$ 的坐标向量 $(0,1)^T$ 上，有：
+
+    $$
+    \boldsymbol{M}_{l,r}
+    \begin{pmatrix}
+    0\\1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    B\\C
+    \end{pmatrix}
+    $$
+
+    所以复合后的一次函数为 $Cx+B$。
+
+    在线段树中，叶子 $i$ 存 $\boldsymbol{M}_i$。若左儿子维护 $\boldsymbol{M}_{L,mid}$，右儿子维护 $\boldsymbol{M}_{mid+1,R}$，则父亲应维护：
+
+    $$
+    \boldsymbol{M}_{L,R}
+    =
+    \boldsymbol{M}_{mid+1,R}\boldsymbol{M}_{L,mid}
+    $$
+
+    也就是右儿子乘左儿子。
+
+??? success "线段树维护：齐次坐标方式"
 
     现在考虑如何维护区间复合。
 
@@ -391,6 +561,8 @@
 
     也就是说，合并时应当是右儿子的矩阵乘左儿子的矩阵。原因是题目要求先经过左半区间的函数，再经过右半区间的函数。
 
+    可以发现，这里的合并顺序与表示矩阵方式完全相同。不同之处只在于最后查询的解释：表示矩阵方式先得到复合函数系数，再代入 $x$；齐次坐标方式直接将 $\boldsymbol{F}_{l,r}$ 作用到 $(x,1)^T$，取第一维。
+
     若支持修改某一个 $f_i$，只需要在线段树上单点修改对应叶子，然后沿途重新合并即可。
 
 ??? abstract "复杂度分析"
@@ -398,6 +570,154 @@
     由于矩阵大小固定为 $2\times2$，一次矩阵乘法可以视为 $\mathcal{O}(1)$。
 
     建树复杂度为 $\mathcal{O}(n)$，单次询问复杂度为 $\mathcal{O}(\log n)$，单点修改复杂度为 $\mathcal{O}(\log n)$，空间复杂度为 $\mathcal{O}(n)$。
+
+## 例子：斐波那契数列
+
+???+ note "题目描述"
+
+    定义斐波那契数列：
+
+    $$
+    F_0=0,\quad F_1=1
+    $$
+
+    $$
+    F_n=F_{n-1}+F_{n-2}
+    $$
+
+    多次询问 $F_n$。
+
+??? tip "Hint"
+
+    递推中每一项只依赖前两项。考虑把相邻两项一起作为状态。
+
+??? success "解法"
+
+    定义状态向量：
+
+    $$
+    \boldsymbol{s}_n=
+    \begin{pmatrix}
+    F_n\\
+    F_{n-1}
+    \end{pmatrix}
+    $$
+
+    根据递推式，有：
+
+    $$
+    \begin{pmatrix}
+    F_{n+1}\\
+    F_n
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+    1&1\\
+    1&0
+    \end{pmatrix}
+    \begin{pmatrix}
+    F_n\\
+    F_{n-1}
+    \end{pmatrix}
+    $$
+
+    记：
+
+    $$
+    \boldsymbol{T}=
+    \begin{pmatrix}
+    1&1\\
+    1&0
+    \end{pmatrix}
+    $$
+
+    则：
+
+    $$
+    \boldsymbol{s}_n=\boldsymbol{T}^{n-1}\boldsymbol{s}_1
+    $$
+
+    其中：
+
+    $$
+    \boldsymbol{s}_1=
+    \begin{pmatrix}
+    1\\0
+    \end{pmatrix}
+    $$
+
+    所以只需要快速求出 $\boldsymbol{T}^{n-1}$，再取结果向量第一维即可。
+
+??? note "与函数复合的关系"
+
+    斐波那契数列中，每一步都在做同一个线性映射：
+
+    $$
+    \boldsymbol{s}\mapsto\boldsymbol{T}\boldsymbol{s}
+    $$
+
+    因此求 $F_n$ 本质上就是维护：
+
+    $$
+    \underbrace{\boldsymbol{T}\boldsymbol{T}\cdots\boldsymbol{T}}_{n-1\text{ 次}}
+    $$
+
+    这和一次函数复合中维护：
+
+    $$
+    \boldsymbol{F}_r\boldsymbol{F}_{r-1}\cdots\boldsymbol{F}_l
+    $$
+
+    是同一种事情。
+
+    不同点在于，斐波那契的每一步转移矩阵相同，所以通常用矩阵快速幂；一次函数复合中每个位置的矩阵可能不同，所以更自然地用线段树维护区间矩阵积。
+
+??? success "线段树维护的扩展"
+
+    如果每个位置的递推转移不同，例如：
+
+    $$
+    a_{i+1}=p_ia_i+q_ia_{i-1}
+    $$
+
+    那么可以令：
+
+    $$
+    \boldsymbol{T}_i=
+    \begin{pmatrix}
+    p_i&q_i\\
+    1&0
+    \end{pmatrix}
+    $$
+
+    此时：
+
+    $$
+    \begin{pmatrix}
+    a_{i+1}\\
+    a_i
+    \end{pmatrix}
+    =
+    \boldsymbol{T}_i
+    \begin{pmatrix}
+    a_i\\
+    a_{i-1}
+    \end{pmatrix}
+    $$
+
+    若要查询从第 $l$ 项状态转移到第 $r$ 项状态，需要维护的矩阵为：
+
+    $$
+    \boldsymbol{T}_{r-1}\boldsymbol{T}_{r-2}\cdots\boldsymbol{T}_l
+    $$
+
+    在线段树上，叶子 $i$ 存 $\boldsymbol{T}_i$，父亲合并仍然是右儿子矩阵乘左儿子矩阵。这样就可以支持单点修改某个递推系数，并在 $\mathcal{O}(\log n)$ 的时间查询一段递推的结果。
+
+??? abstract "复杂度分析"
+
+    对普通斐波那契数列，矩阵快速幂时间复杂度为 $\mathcal{O}(\log n)$。
+
+    对每个位置转移不同的扩展形式，线段树建树复杂度为 $\mathcal{O}(n)$，单次查询和单点修改复杂度均为 $\mathcal{O}(\log n)$。
 
 ## 结语
 
