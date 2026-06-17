@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300">
+  <rect width="720" height="300" fill="white"/>
+  <style>
+    .axis{stroke:#333;stroke-width:2}
+    .grid{stroke:#ddd;stroke-width:1}
+    .bar{fill:#7fb3d5;stroke:#1b4f72;stroke-width:2}
+    .rise{stroke:#c0392b;stroke-width:4;marker-end:url(#arrow)}
+    .txt{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:20px;fill:#222}
+    .small{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:16px;fill:#444}
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#c0392b"/>
+    </marker>
+  </defs>
+  <line class="axis" x1="70" y1="250" x2="660" y2="250"/>
+  <line class="axis" x1="70" y1="250" x2="70" y2="35"/>
+  <g>
+    <line class="grid" x1="70" y1="210" x2="660" y2="210"/>
+    <line class="grid" x1="70" y1="170" x2="660" y2="170"/>
+    <line class="grid" x1="70" y1="130" x2="660" y2="130"/>
+    <line class="grid" x1="70" y1="90" x2="660" y2="90"/>
+    <line class="grid" x1="70" y1="50" x2="660" y2="50"/>
+  </g>
+  <rect class="bar" x="100" y="210" width="55" height="40"/>
+  <rect class="bar" x="180" y="130" width="55" height="120"/>
+  <rect class="bar" x="260" y="50" width="55" height="200"/>
+  <rect class="bar" x="340" y="90" width="55" height="160"/>
+  <rect class="bar" x="420" y="170" width="55" height="80"/>
+  <rect class="bar" x="500" y="50" width="55" height="200"/>
+  <rect class="bar" x="580" y="170" width="55" height="80"/>
+  <text class="small" x="117" y="275">1</text>
+  <text class="small" x="197" y="275">3</text>
+  <text class="small" x="277" y="275">5</text>
+  <text class="small" x="357" y="275">4</text>
+  <text class="small" x="437" y="275">2</text>
+  <text class="small" x="517" y="275">5</text>
+  <text class="small" x="597" y="275">2</text>
+  <path class="rise" d="M128,208 C128,170 190,170 207,132"/>
+  <path class="rise" d="M208,128 C208,90 270,90 287,52"/>
+  <path class="rise" d="M448,168 C448,105 510,105 527,52"/>
+  <text class="txt" x="80" y="28">只在高度上升时产生新的操作层</text>
+  <text class="small" x="90" y="295">答案 = d1 + 上升量之和</text>
+</svg>

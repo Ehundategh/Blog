@@ -102,5 +102,12 @@ nav:
       - 总览: geometry/index.md
   - 题目以及题解:
       - 总览: solution/index.md
+      - 九光暑假:
+          - 总览: solution/jiuguang-summer/index.md
+          - 第一天:
+              - 道路建设: solution/jiuguang-summer/day1/road.md
+              - 相聚: solution/jiuguang-summer/day1/gather.md
+              - 流光之歌: solution/jiuguang-summer/day1/song.md
+              - 峰翠铜炉: solution/jiuguang-summer/day1/mount.md
   - 杂项:
       - 总览: misc/index.md

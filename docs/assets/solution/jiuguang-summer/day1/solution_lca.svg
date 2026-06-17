@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="330" viewBox="0 0 720 330">
+  <rect width="720" height="330" fill="white"/>
+  <style>
+    .edge{stroke:#555;stroke-width:3;fill:none}
+    .path{stroke:#2980b9;stroke-width:6;fill:none;stroke-linecap:round}
+    .branch{stroke:#c0392b;stroke-width:5;fill:none;stroke-linecap:round}
+    .node{fill:#fff;stroke:#222;stroke-width:3}
+    .key{fill:#f9e79f;stroke:#b7950b;stroke-width:3}
+    .meet{fill:#d5f5e3;stroke:#1e8449;stroke-width:3}
+    .txt{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:20px;fill:#222}
+    .small{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:16px;fill:#444}
+  </style>
+  <path class="edge" d="M360,55 L250,130 L180,220"/>
+  <path class="edge" d="M250,130 L320,220"/>
+  <path class="edge" d="M360,55 L470,130 L560,220"/>
+  <path class="edge" d="M470,130 L430,230"/>
+  <path class="path" d="M180,220 L250,130 L360,55 L470,130 L560,220"/>
+  <path class="branch" d="M320,220 L250,130"/>
+  <circle class="node" cx="360" cy="55" r="22"/>
+  <circle class="meet" cx="250" cy="130" r="22"/>
+  <circle class="node" cx="470" cy="130" r="22"/>
+  <circle class="key" cx="180" cy="220" r="24"/>
+  <circle class="key" cx="320" cy="220" r="24"/>
+  <circle class="key" cx="560" cy="220" r="24"/>
+  <circle class="node" cx="430" cy="230" r="20"/>
+  <text class="txt" x="171" y="227">u</text>
+  <text class="txt" x="312" y="227">w</text>
+  <text class="txt" x="552" y="227">v</text>
+  <text class="txt" x="215" y="137">x</text>
+  <text class="small" x="75" y="292">三点的最优集合点只需在两两 LCA 候选中枚举</text>
+  <text class="small" x="75" y="315">蓝色是 u 到 v 的路径，红色是第三个点接入路径的位置</text>
+</svg>

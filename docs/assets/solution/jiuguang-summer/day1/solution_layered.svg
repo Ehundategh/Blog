@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="360" viewBox="0 0 760 360">
+  <rect width="760" height="360" fill="white"/>
+  <style>
+    .edge{stroke:#555;stroke-width:2;marker-end:url(#arrow)}
+    .free{stroke:#c0392b;stroke-width:3;stroke-dasharray:8 5;marker-end:url(#arrowRed)}
+    .node{fill:#eef5ff;stroke:#2e86c1;stroke-width:2}
+    .txt{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:18px;fill:#222}
+    .small{font-family:Arial,'Microsoft YaHei',sans-serif;font-size:15px;fill:#444}
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#555"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#c0392b"/>
+    </marker>
+  </defs>
+  <text class="txt" x="60" y="35">分层图：第 i 层表示已经使用 i 条免费边</text>
+  <g transform="translate(70,70)">
+    <text class="txt" x="0" y="25">第 0 层</text>
+    <circle class="node" cx="120" cy="20" r="22"/><text class="txt" x="113" y="27">u</text>
+    <circle class="node" cx="250" cy="20" r="22"/><text class="txt" x="243" y="27">v</text>
+    <line class="edge" x1="142" y1="20" x2="228" y2="20"/>
+    <text class="small" x="165" y="12">w</text>
+  </g>
+  <g transform="translate(70,155)">
+    <text class="txt" x="0" y="25">第 1 层</text>
+    <circle class="node" cx="120" cy="20" r="22"/><text class="txt" x="113" y="27">u</text>
+    <circle class="node" cx="250" cy="20" r="22"/><text class="txt" x="243" y="27">v</text>
+    <line class="edge" x1="142" y1="20" x2="228" y2="20"/>
+    <text class="small" x="165" y="12">w</text>
+  </g>
+  <g transform="translate(70,240)">
+    <text class="txt" x="0" y="25">第 2 层</text>
+    <circle class="node" cx="120" cy="20" r="22"/><text class="txt" x="113" y="27">u</text>
+    <circle class="node" cx="250" cy="20" r="22"/><text class="txt" x="243" y="27">v</text>
+    <line class="edge" x1="142" y1="20" x2="228" y2="20"/>
+    <text class="small" x="165" y="12">w</text>
+  </g>
+  <line class="free" x1="192" y1="90" x2="300" y2="155"/>
+  <line class="free" x1="192" y1="175" x2="300" y2="240"/>
+  <text class="small" x="390" y="150">跨层边权为 0，表示把这条边修成索道</text>
+  <text class="small" x="390" y="178">最多下降 a 层，所以最多使用 a 条免费边</text>
+  <text class="small" x="390" y="240">二进制分组保证任意一对关键点被分到 A/B 两侧</text>
+</svg>
