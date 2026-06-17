@@ -72,10 +72,12 @@ nav:
       - ST 表: data-structure/st-table.md
       - 线段树:
           - 总览: data-structure/segment-tree/index.md
+          - 线段树基础: data-structure/segment-tree/basic.md
           - 扫描线: data-structure/segment-tree/scanline.md
           - 双半群模型: data-structure/segment-tree/double-semigroup.md
   - 字符串:
       - 总览: string/index.md
+      - 字符串 Hash: string/hash.md
   - 数学:
       - 总览: math/index.md
       - 抽象代数: math/abstract-algebra.md
