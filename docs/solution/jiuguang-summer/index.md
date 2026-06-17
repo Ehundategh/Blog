@@ -6,7 +6,9 @@
 
 本场为九光暑假第一天训练赛，出题人为 Ehundategh。当前题面 PDF 中的日期为暂定，最终时间以正式发布版本为准。
 
-- [题面 PDF 下载](../../assets/solution/jiuguang-summer/day1.pdf)
+- [题面 PDF 下载](/Blog/assets/solution/jiuguang-summer/day1.pdf)
+- [第一天下发文件下载（题面、样例、参考代码）](/Blog/assets/solution/jiuguang-summer/day1-files.zip)
+- 完整数据下载：[相聚](/Blog/assets/solution/jiuguang-summer/day1-data-gather.zip)、[流光之歌](/Blog/assets/solution/jiuguang-summer/day1-data-song.zip)、[峰翠铜炉](/Blog/assets/solution/jiuguang-summer/day1-data-mount.zip)
 - [道路建设](day1/road.md)
 - [相聚](day1/gather.md)
 - [流光之歌](day1/song.md)

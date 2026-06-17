@@ -4,7 +4,7 @@
 
 给定一个长度为 $n$ 的序列 $\{d_i\}$，每次可以选择一段所有数均大于 $0$ 的连续区间，并将这一段全部减一。要求把整个序列清零所需的最少操作次数。
 
-题面下载：[九光暑假第一天题面](../../../assets/solution/jiuguang-summer/day1.pdf)
+题面下载：[九光暑假第一天题面](/Blog/assets/solution/jiuguang-summer/day1.pdf)
 
 ## 第一档部分分
 
@@ -32,7 +32,7 @@ $$
 \{1,3,5,4,2,5,2\}
 $$
 
-![道路建设中只在高度上升处产生新操作层](../../../assets/solution/jiuguang-summer/day1/solution_layers.svg)
+![道路建设中只在高度上升处产生新操作层](/Blog/assets/solution/jiuguang-summer/day1/solution_layers.svg)
 
 在处理第 $3$ 个数时，会顺带把它附近不高于它的一段一起填掉，剩下的贡献可以看作新的高度差。于是每当 $d_{i+1}>d_i$ 时，才会产生新的操作层数。
 
@@ -49,3 +49,23 @@ $$
 ## 复杂度
 
 时间复杂度为 $\mathcal{O}(n)$，空间复杂度为 $\mathcal{O}(1)$。
+
+## 参考代码
+
+```cpp
+#include <cstdio>
+#define MAXN 100010
+using namespace std;
+int n,Last,Now;
+long long Ans;
+int main(){
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++){
+        scanf("%d",&Now);
+        if(Now>Last) Ans+=Now-Last;
+        Last=Now;
+    }
+    printf("%lld\n",Ans);
+    return 0;
+}
+```

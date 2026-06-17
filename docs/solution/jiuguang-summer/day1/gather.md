@@ -4,7 +4,7 @@
 
 给定一棵带边权的树。每次询问给出 $k$ 个点，其中 $2\leq k\leq 3$，要求选择一个集合点 $v$，使得这些点到 $v$ 的距离和最小，并输出这个最小值。
 
-题面下载：[九光暑假第一天题面](../../../assets/solution/jiuguang-summer/day1.pdf)
+题面下载：[九光暑假第一天题面](/Blog/assets/solution/jiuguang-summer/day1.pdf)
 
 ## 第一档部分分
 
@@ -60,7 +60,7 @@ $$
 \mathbf{LCA}(u,v),\quad \mathbf{LCA}(u,w),\quad \mathbf{LCA}(v,w)
 $$
 
-![三点相聚时，最优集合点只需在两两 LCA 相关位置中寻找](../../../assets/solution/jiuguang-summer/day1/solution_lca.svg)
+![三点相聚时，最优集合点只需在两两 LCA 相关位置中寻找](/Blog/assets/solution/jiuguang-summer/day1/solution_lca.svg)
 
 之中。
 
@@ -77,3 +77,85 @@ $$
 仔细研究正解的分类讨论可以知道，最优集合点只会是两两 $\mathbf{LCA}$ 中的一个。事实上，在三个点的情况下，$\mathbf{LCA}(u,v)$、$\mathbf{LCA}(u,w)$、$\mathbf{LCA}(v,w)$ 中一定有一个就是三点路径的交汇点。
 
 预处理倍增数组和根到每个点的距离后，每次询问只需要常数次 $\mathbf{LCA}$。时间复杂度为 $\mathcal{O}((n+q)\log n)$，空间复杂度为 $\mathcal{O}(n\log n)$。
+
+## 参考代码
+
+```cpp
+#include <cmath>
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+#define MAXN 100010
+using namespace std;
+int Head[MAXN],Total=0,n,q,In1,In2,In3,k;
+int Depth[MAXN],Fa[MAXN][21],d[MAXN];
+struct edge{
+    int St,Ed,Val;
+    int Next;
+}Edge[MAXN<<1];
+void Edge_Add(int St,int Ed,int Val){
+    Edge[++Total]={St,Ed,Val,Head[St]};
+    Head[St]=Total;
+}
+void DFS(int Now,int From){
+    d[Now]=d[From]+1;
+    Fa[Now][0]=From;
+    for(int i=Head[Now];i;i=Edge[i].Next){
+        if(Edge[i].Ed==From) continue;
+        Depth[Edge[i].Ed]=Depth[Now]+Edge[i].Val;
+        DFS(Edge[i].Ed,Now);
+    }
+}
+void Init(){
+    for(int i=1;i<=19;i++){
+        for(int j=1;j<=n;j++){
+            Fa[j][i]=Fa[Fa[j][i-1]][i-1];
+        }
+    }
+}
+int LCA(int x,int y){
+    if(d[x]<d[y]) swap(x,y);
+    for(int i=19;i>=0;i--){
+        if(d[Fa[x][i]]>d[y]){
+            x=Fa[x][i];
+        }
+    }
+    if(d[x]>d[y])x=Fa[x][0];
+    if(x==y) return x;
+    for(int i=19;i>=0;i--){
+        if(Fa[x][i]!=Fa[y][i]){
+            x=Fa[x][i];
+            y=Fa[y][i];
+        }
+    }
+    return Fa[x][0];
+}
+int Dist(int a,int b){
+    int lca=LCA(a,b);
+    return abs(Depth[a]-Depth[lca])+abs(Depth[b]-Depth[lca]);
+}
+int main(){
+    scanf("%d%d",&n,&q);
+    for(int i=1;i<=n-1;i++){
+        scanf("%d%d%d",&In1,&In2,&In3);
+        Edge_Add(In1,In2,In3);
+        Edge_Add(In2,In1,In3);
+    }
+    DFS(1,1);
+    Init();
+    for(int i=1;i<=q;i++){
+        scanf("%d",&k);
+        if (k==2) {
+            scanf("%d%d",&In1,&In2);
+            printf("%d\n",Dist(In1,In2));
+        }
+        else {
+            scanf("%d%d%d",&In1,&In2,&In3);
+            int lca1,lca2;
+            lca1=LCA(In1,In2);lca2=LCA(In2,In3);
+            printf("%d\n",min(Dist(In1,lca1)+Dist(In2,lca1)+Dist(In3,lca1),Dist(In1,lca2)+Dist(In2,lca2)+Dist(In3,lca2)));
+        }
+    }
+    return 0;
+}
+```

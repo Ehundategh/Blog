@@ -6,7 +6,7 @@
 
 例如矩形面积并中，我们按 $x$ 轴扫描，线段树维护 $y$ 轴上的覆盖长度；离线二维数点中，我们按右端点扫描，权值数据结构维护当前前缀中的数值分布。
 
-![扫描线维护矩形面积并](../../assets/scanline/rectangle-union.svg)
+![扫描线维护矩形面积并](/Blog/assets/scanline/rectangle-union.svg)
 
 ## 矩形面积并
 
@@ -163,7 +163,7 @@
 
 ??? success "解法"
 
-    ![离线二维数点的前缀拆分](../../assets/scanline/offline-2d-counting.svg)
+    ![离线二维数点的前缀拆分](/Blog/assets/scanline/offline-2d-counting.svg)
 
     把一个询问拆成两个部分。由于询问的信息有可减性，我们可以将 $(l,r,x)$ 转化成 $(1,l-1,x)$ 和 $(1,r,x)$ 两个询问，接着仍然根据扫描线的思路，将询问按右端点升序排列，依次处理。
 
