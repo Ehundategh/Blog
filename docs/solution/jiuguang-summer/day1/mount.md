@@ -4,7 +4,7 @@
 
 给定一张有向带权图，其中有 $k$ 个心仪建设地。我们需要选择两个不同的心仪建设地作为起点和终点，并选择至多 $a$ 条边修建索道，使这些边的代价视为 $0$，要求最小化从起点到终点的逃难时间。
 
-题面下载：[九光暑假第一天题面](/Blog/assets/solution/jiuguang-summer/day1.pdf)
+题面下载：[九光暑假第一天题面](/Blog/assets/solution/jiuguang-summer/day1/statement.pdf)
 
 ## 第一档部分分
 

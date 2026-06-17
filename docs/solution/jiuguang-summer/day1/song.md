@@ -4,7 +4,7 @@
 
 给定歌魔声音 $T$，以及 $n$ 个成员声音 $S_i$。每次询问给出一个不可用前缀长度 $l$，比较时需要忽略每段声音的前 $l$ 个字符，要求找出与歌魔声音最长公共前缀最大的成员编号，若有多个则输出编号最小者。
 
-题面下载：[九光暑假第一天题面](/Blog/assets/solution/jiuguang-summer/day1.pdf)
+题面下载：[九光暑假第一天题面](/Blog/assets/solution/jiuguang-summer/day1/statement.pdf)
 
 ## 第一档部分分
 

@@ -105,6 +105,7 @@ nav:
       - 九光暑假:
           - 总览: solution/jiuguang-summer/index.md
           - 第一天:
+              - 总览: solution/jiuguang-summer/day1/index.md
               - 道路建设: solution/jiuguang-summer/day1/road.md
               - 相聚: solution/jiuguang-summer/day1/gather.md
               - 流光之歌: solution/jiuguang-summer/day1/song.md
