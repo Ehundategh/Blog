@@ -186,31 +186,60 @@ $$
     从大到小枚举 $j$，维护对应窗口即可。
 
     ```cpp
-    for(int i=1;i<=T;i++){
-        for(int j=0;j<=MaxP;j++) dp[i][j]=dp[i-1][j];
-        for(int j=0;j<=as[i]&&j<=MaxP;j++){
-            dp[i][j]=max(dp[i][j],-j*ap[i]);
-        }
-        int From=i-w-1;
-        if(From<0) continue;
+    #include <cstdio>
+    #include <cstring>
+    #include <algorithm>
+    #define MAXN 4010
+    using namespace std;
 
-        int Head=1,Tail=0;
-        for(int j=0;j<=MaxP;j++){
-            int Val=dp[From][j]+j*ap[i];
-            while(Head<=Tail&&Q[Head]<j-as[i]) Head++;
-            while(Head<=Tail&&dp[From][Q[Tail]]+Q[Tail]*ap[i]<=Val) Tail--;
-            Q[++Tail]=j;
-            dp[i][j]=max(dp[i][j],dp[From][Q[Head]]+(Q[Head]-j)*ap[i]);
-        }
+    struct Point{
+        int Pos,Value;
+    };
 
-        Head=1;Tail=0;
-        for(int j=MaxP;j>=0;j--){
-            int Val=dp[From][j]+j*bp[i];
-            while(Head<=Tail&&Q[Head]>j+bs[i]) Head++;
-            while(Head<=Tail&&dp[From][Q[Tail]]+Q[Tail]*bp[i]<=Val) Tail--;
-            Q[++Tail]=j;
-            dp[i][j]=max(dp[i][j],dp[From][Q[Head]]+(Q[Head]-j)*bp[i]);
+    Point Make(int a,int b){
+        Point c; c.Pos=a; c.Value=b;
+        return c;
+    }
+
+    struct Deque{
+        Point Line[MAXN];
+        int Head,Tail;
+        void Init(){Head=2;Tail=1;}
+        bool Empty(){return Tail<Head;}
+        Point Back(){return Line[Tail];}
+        Point Front(){return Line[Head];}
+        void Push(Point a){Line[++Tail]=a;}
+        void Pop_Back(){Tail--;}
+        void Pop_Front(){Head++;}
+    }Q1,Q2;
+
+    int Dp[MAXN][MAXN],n,MaxP,m,In1,In2,In3,In4,Ans=0;
+
+    int main(){
+        scanf("%d%d%d",&n,&MaxP,&m);
+        memset(Dp,0xcf,sizeof(Dp));
+        Dp[0][0]=0;
+        for(int i=1;i<=n;i++){
+            scanf("%d%d%d%d",&In1,&In2,&In3,&In4);
+            Q1.Init();Q2.Init();
+            for(int j=0;j<=MaxP;j++){
+                Dp[i][j]=max(Dp[i][j],Dp[i-1][j]);
+                Q1.Push(Make(0,0));
+                while(!Q1.Empty()&&Q1.Front().Pos<j-In3) Q1.Pop_Front();
+                if(!Q1.Empty()) Dp[i][j]=max(Dp[i][j],Q1.Front().Value-j*In1);
+                while(!Q1.Empty()&&Q1.Back().Value<Dp[max(0,i-m-1)][j]+j*In1) Q1.Pop_Back();
+                Q1.Push(Make(j,Dp[max(0,i-m-1)][j]+j*In1));
+            }
+            for(int j=MaxP;j>=0;j--){
+                while(!Q2.Empty()&&Q2.Front().Pos>j+In4) Q2.Pop_Front();
+                if(!Q2.Empty()) Dp[i][j]=max(Dp[i][j],Q2.Front().Value-j*In2);
+                while(!Q2.Empty()&&Q2.Back().Value<Dp[max(0,i-m-1)][j]+j*In2) Q2.Pop_Back();
+                Q2.Push(Make(j,Dp[max(0,i-m-1)][j]+j*In2));
+                if(i==n) Ans=max(Dp[i][j],Ans);
+            }
         }
+        printf("%d",Ans);
+        return 0;
     }
     ```
 

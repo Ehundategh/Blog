@@ -4,8 +4,6 @@
 
 给定一个长度为 $n$ 的序列 $\{d_i\}$，每次可以选择一段所有数均大于 $0$ 的连续区间，并将这一段全部减一。要求把整个序列清零所需的最少操作次数。
 
-题面下载：[九光暑假第一天题面](/Blog/assets/solution/jiuguang-summer/day1/statement.pdf)
-
 ## 第一档部分分
 
 此时 $1\leq n\leq 10$。

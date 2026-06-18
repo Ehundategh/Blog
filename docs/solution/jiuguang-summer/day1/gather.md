@@ -4,8 +4,6 @@
 
 给定一棵带边权的树。每次询问给出 $k$ 个点，其中 $2\leq k\leq 3$，要求选择一个集合点 $v$，使得这些点到 $v$ 的距离和最小，并输出这个最小值。
 
-题面下载：[九光暑假第一天题面](/Blog/assets/solution/jiuguang-summer/day1/statement.pdf)
-
 ## 第一档部分分
 
 此时 $1\leq n\leq 100$，$1\leq q\leq 100$，且 $k=2$。

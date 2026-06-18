@@ -110,15 +110,15 @@
         rs=Build(Mid+1,r);
         return Now;
     }
-    void Push_Up(int Now){
+    void Update(int Now){
         Node[Now].Val=min(Node[ls].Val,Node[rs].Val);
         return;
     }
-    void Modify(int Now,int Pos,int Val){
+    void Give(int Now,int Pos,int Val){
         if(Node[Now].l==Node[Now].r){Node[Now].Val=Val; return;}
-        if(Pos<=Node[ls].r) Modify(ls,Pos,Val);
-        else if(Pos>=Node[rs].l) Modify(rs,Pos,Val);
-        Push_Up(Now);return;
+        if(Pos<=Node[ls].r) Give(ls,Pos,Val);
+        else if(Pos>=Node[rs].l) Give(rs,Pos,Val);
+        Update(Now);return;
     }
     int Query(int Now,int Val){
         if(Node[Now].l==Node[Now].r) return Node[Now].l;
@@ -135,7 +135,7 @@
         for(int i=1;i<=q;i++){
             while(rn<Q[i].r){
                 rn++;
-                Modify(1,Line[rn]+1,rn);
+                Give(1,Line[rn]+1,rn);
             }
             Q[i].Ans=Query(1,Q[i].l);
         }

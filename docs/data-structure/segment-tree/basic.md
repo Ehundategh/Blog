@@ -42,7 +42,7 @@ struct node{
 }Node[MAXN<<2];
 long long Line[MAXN];
 int cnt=0,n,m;
-void Push_Up(int Now){
+void Update(int Now){
     Node[Now].Val=Node[LSon].Val+Node[RSon].Val;
 }
 int Build(int l,int r){
@@ -52,7 +52,7 @@ int Build(int l,int r){
     int Mid=(l+r)>>1;
     LSon=Build(l,Mid);
     RSon=Build(Mid+1,r);
-    Push_Up(Now);
+    Update(Now);
     return Now;
 }
 ```
@@ -85,15 +85,15 @@ long long Query(int Now,int l,int r){
 单点修改比较直接。沿着根到对应叶子的路径递归下去，修改叶子后再一路向上重新合并。
 
 ```cpp
-void Modify(int Now,int Pos,long long Val){
+void Give(int Now,int Pos,long long Val){
     if(Node[Now].l==Node[Now].r){
         Node[Now].Val=Val;
         return;
     }
     int Mid=(Node[Now].l+Node[Now].r)>>1;
-    if(Pos<=Mid) Modify(LSon,Pos,Val);
-    else Modify(RSon,Pos,Val);
-    Push_Up(Now);
+    if(Pos<=Mid) Give(LSon,Pos,Val);
+    else Give(RSon,Pos,Val);
+    Update(Now);
 }
 ```
 
@@ -137,7 +137,7 @@ void Modify(int Now,int l,int r,long long Val){
     Push_Down(Now);
     Modify(LSon,l,r,Val);
     Modify(RSon,l,r,Val);
-    Push_Up(Now);
+    Update(Now);
 }
 long long Query(int Now,int l,int r){
     if(Node[Now].l>=l&&Node[Now].r<=r) return Node[Now].Val;
@@ -209,7 +209,7 @@ void Modify(int Now,int Pos,long long Val){
     int Mid=(Node[Now].l+Node[Now].r)>>1;
     if(Pos<=Mid) Modify(LSon,Pos,Val);
     else Modify(RSon,Pos,Val);
-    Push_Up(Now);
+    Update(Now);
 }
 ```
 

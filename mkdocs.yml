@@ -70,6 +70,11 @@ nav:
   - 数据结构:
       - 总览: data-structure/index.md
       - ST 表: data-structure/st-table.md
+      - 平衡树:
+          - 总览: data-structure/balanced-tree/index.md
+          - 二叉搜索树: data-structure/balanced-tree/binary-search-tree.md
+          - Splay: data-structure/balanced-tree/splay.md
+          - Treap: data-structure/balanced-tree/treap.md
       - 线段树:
           - 总览: data-structure/segment-tree/index.md
           - 线段树基础: data-structure/segment-tree/basic.md

@@ -8,6 +8,13 @@
 
 - [ST 表](st-table.md)
 
+### 平衡树
+
+- [平衡树](balanced-tree/index.md)
+- [二叉搜索树](balanced-tree/binary-search-tree.md)
+- [Splay](balanced-tree/splay.md)
+- [Treap](balanced-tree/treap.md)
+
 ### 线段树
 
 - [线段树](segment-tree/index.md)
