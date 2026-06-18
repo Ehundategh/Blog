@@ -9,11 +9,11 @@
 
 ## Std 与数据
 
-以下数据包来自对应含有 `datamaker.cpp` 的题目目录，并保留 `.in`、`.ans`、`datamaker.cpp` 与 `std.cpp`。
+以下数据包来自对应题目的数据生成目录，并保留 `.in`、`.ans`、数据生成器与 `std.cpp`。
 
 | 题目 | 来源 | Std | 数据点 | 数据 |
 | --- | --- | --- | --- | --- |
-| 道路建设 | [P5019 [NOIP 2018 提高组] 铺设道路](https://www.luogu.com.cn/problem/P5019) | [road.cpp](/Blog/assets/solution/jiuguang-summer/day1/std/road.cpp) | 当前目录未找到 `road` 数据目录 |  |
+| 道路建设 | [P5019 [NOIP 2018 提高组] 铺设道路](https://www.luogu.com.cn/problem/P5019) | [road.cpp](/Blog/assets/solution/jiuguang-summer/day1/std/road.cpp) | $20$ 组输入，$20$ 组答案 | [data-road.zip](/Blog/assets/solution/jiuguang-summer/day1/data-road.zip) |
 | 相聚 | 改编自 [P4281 [AHOI2008] 紧急集合 / 聚会](https://www.luogu.com.cn/problem/P4281) | [gather.cpp](/Blog/assets/solution/jiuguang-summer/day1/std/gather.cpp) | $20$ 组输入，$20$ 组答案 | [data-gather.zip](/Blog/assets/solution/jiuguang-summer/day1/data-gather.zip) |
 | 流光之歌 | 原创 | [song.cpp](/Blog/assets/solution/jiuguang-summer/day1/std/song.cpp) | $20$ 组输入，$20$ 组答案 | [data-song.zip](/Blog/assets/solution/jiuguang-summer/day1/data-song.zip) |
 | 峰翠铜炉 | 原创 | [mount.cpp](/Blog/assets/solution/jiuguang-summer/day1/std/mount.cpp) | $25$ 组输入，$25$ 组答案 | [data-mount.zip](/Blog/assets/solution/jiuguang-summer/day1/data-mount.zip) |

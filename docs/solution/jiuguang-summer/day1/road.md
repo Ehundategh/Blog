@@ -52,15 +52,15 @@ $$
 
 ```cpp
 #include <cstdio>
-#define MAXN 100010
+#include <algorithm>
 using namespace std;
 int n,Last,Now;
-long long Ans;
+long long Ans=0;
 int main(){
     scanf("%d",&n);
     for(int i=1;i<=n;i++){
         scanf("%d",&Now);
-        if(Now>Last) Ans+=Now-Last;
+        Ans+=max(Now-Last,0);
         Last=Now;
     }
     printf("%lld\n",Ans);
