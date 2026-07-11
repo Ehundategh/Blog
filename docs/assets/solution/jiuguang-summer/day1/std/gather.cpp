@@ -68,9 +68,11 @@ int main(){
         }
         else {
             scanf("%d%d%d",&In1,&In2,&In3);
-            int lca1,lca2;
-            lca1=LCA(In1,In2);lca2=LCA(In2,In3);
-            printf("%d\n",min(Dist(In1,lca1)+Dist(In2,lca1)+Dist(In3,lca1),Dist(In1,lca2)+Dist(In2,lca2)+Dist(In3,lca2)));
+            int lca1,lca2,lca3;
+            lca1=LCA(In1,In2);lca2=LCA(In2,In3);lca3=LCA(In1,In3);
+            printf("%d\n",min(Dist(In1,lca1)+Dist(In2,lca1)+Dist(In3,lca1),
+                           min(Dist(In1,lca2)+Dist(In2,lca2)+Dist(In3,lca2),
+                               Dist(In1,lca3)+Dist(In2,lca3)+Dist(In3,lca3))));
         }
     }
     return 0;
