@@ -377,13 +377,13 @@ internal sealed class MainForm : Form
     {
         using var dialog = new AccountDialog("注册");
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
-        if (accounts.Any(a => a.Handle == dialog.Handle))
+        if (accounts.Any(a => a.Handle == dialog.UserHandle))
         {
             MessageBox.Show(this, "这个 Handle 已经在本机注册。", "注册失败");
             return;
         }
         var salt = Convert.ToBase64String(RandomNumberGenerator.GetBytes(16));
-        currentAccount = new AccountInfo(dialog.DisplayName, dialog.Handle, salt, HashPassword(dialog.Password, salt));
+        currentAccount = new AccountInfo(dialog.DisplayName, dialog.UserHandle, salt, HashPassword(dialog.Password, salt));
         accounts.Add(currentAccount);
         SaveAccounts();
         SaveSession();
@@ -397,7 +397,7 @@ internal sealed class MainForm : Form
     {
         using var dialog = new AccountDialog("登录", needName: false);
         if (dialog.ShowDialog(this) != DialogResult.OK) return;
-        var account = accounts.FirstOrDefault(a => a.Handle == dialog.Handle);
+        var account = accounts.FirstOrDefault(a => a.Handle == dialog.UserHandle);
         if (account is null || HashPassword(dialog.Password, account.Salt) != account.PasswordHash)
         {
             MessageBox.Show(this, "Handle 或密码不正确。", "登录失败");
@@ -524,7 +524,7 @@ internal sealed class AccountDialog : Form
     private readonly TextBox passwordBox = new();
 
     public string DisplayName => string.IsNullOrWhiteSpace(nameBox.Text) ? handleBox.Text.Trim() : nameBox.Text.Trim();
-    public string Handle => handleBox.Text.Trim();
+    public string UserHandle => handleBox.Text.Trim();
     public string Password => passwordBox.Text;
 
     public AccountDialog(string title, bool needName = true)
