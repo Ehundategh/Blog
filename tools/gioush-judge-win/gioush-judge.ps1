@@ -7,7 +7,11 @@ $ErrorActionPreference = "Stop"
 $DefaultManifest = "https://ehundategh.github.io/Blog/oj/problems.json"
 
 function Judge-Home {
-    $path = Join-Path $env:USERPROFILE ".gioush-judge"
+    if ($env:GIOUSH_JUDGE_HOME) {
+        $path = $env:GIOUSH_JUDGE_HOME
+    } else {
+        $path = Join-Path $env:USERPROFILE ".gioush-judge"
+    }
     New-Item -ItemType Directory -Force -Path $path | Out-Null
     return $path
 }
