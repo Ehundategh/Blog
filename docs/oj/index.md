@@ -8,38 +8,39 @@
 
 下载评测器：
 
+- [gioush-judge-windows.zip](/Blog/assets/oj/gioush-judge-windows.zip)
 - [gioush-judge.py](/Blog/assets/oj/gioush-judge.py)
 
 需要本机已经安装：
 
-- Python 3
 - `g++`
 
 检查方式：
 
 ```bash
-python --version
 g++ --version
 ```
+
+Windows 下推荐下载 `gioush-judge-windows.zip`，解压后直接在目录中使用 `gioush-judge.cmd`。这个版本不需要 Python。
 
 ## 使用方式
 
 评测一份 C++ 代码：
 
-```bash
-python gioush-judge.py run jiuguang-day2-trade main.cpp
+```bat
+gioush-judge.cmd run jiuguang-day2-trade main.cpp
 ```
 
 查看题目列表：
 
-```bash
-python gioush-judge.py list
+```bat
+gioush-judge.cmd list
 ```
 
 查看本地补题记录：
 
-```bash
-python gioush-judge.py records
+```bat
+gioush-judge.cmd records
 ```
 
 ## Period 2：本地身份与评测报告
@@ -48,21 +49,21 @@ python gioush-judge.py records
 
 设置本地身份：
 
-```bash
-python gioush-judge.py profile --name Ehundategh --handle Ehundategh
+```bat
+gioush-judge.cmd profile --name Ehundategh --handle Ehundategh
 ```
 
 查看本地身份：
 
-```bash
-python gioush-judge.py profile
+```bat
+gioush-judge.cmd profile
 ```
 
 导出某题最近一次评测报告：
 
-```bash
-python gioush-judge.py export jiuguang-day2-wind --format md
-python gioush-judge.py export jiuguang-day2-wind --format json
+```bat
+gioush-judge.cmd export jiuguang-day2-wind --format md
+gioush-judge.cmd export jiuguang-day2-wind --format json
 ```
 
 默认报告会写入：
@@ -71,25 +72,41 @@ python gioush-judge.py export jiuguang-day2-wind --format json
 ~/.gioush-judge/exports/
 ```
 
+## Period 3：Windows 下载即用包
+
+这一阶段补上 Windows 版入口。压缩包中包含 `gioush-judge.cmd`、`gioush-judge.ps1` 与简短说明，解压后可以直接运行，不需要额外安装 Python。评测器仍然只在本机编译、运行和保存记录，网站只提供题目配置与数据包。
+
+若需要指定本地题目配置，可以写成：
+
+```bat
+gioush-judge.cmd --manifest docs\oj\problems.json list
+```
+
+Python 版评测器仍然保留，已经习惯旧命令的机器可以继续使用：
+
+```bash
+python gioush-judge.py run jiuguang-day2-trade main.cpp
+```
+
 ## 题目列表
 
 ### 九光暑假第一天
 
 | 题号 | 题目 | 命令 |
 | --- | --- | --- |
-| `jiuguang-day1-road` | 道路建设 | `python gioush-judge.py run jiuguang-day1-road main.cpp` |
-| `jiuguang-day1-gather` | 相聚 | `python gioush-judge.py run jiuguang-day1-gather main.cpp` |
-| `jiuguang-day1-song` | 流光之歌 | `python gioush-judge.py run jiuguang-day1-song main.cpp` |
-| `jiuguang-day1-mount` | 峰翠铜炉 | `python gioush-judge.py run jiuguang-day1-mount main.cpp` |
+| `jiuguang-day1-road` | 道路建设 | `gioush-judge.cmd run jiuguang-day1-road main.cpp` |
+| `jiuguang-day1-gather` | 相聚 | `gioush-judge.cmd run jiuguang-day1-gather main.cpp` |
+| `jiuguang-day1-song` | 流光之歌 | `gioush-judge.cmd run jiuguang-day1-song main.cpp` |
+| `jiuguang-day1-mount` | 峰翠铜炉 | `gioush-judge.cmd run jiuguang-day1-mount main.cpp` |
 
 ### 九光暑假第二天
 
 | 题号 | 题目 | 命令 |
 | --- | --- | --- |
-| `jiuguang-day2-reset` | 归零 | `python gioush-judge.py run jiuguang-day2-reset main.cpp` |
-| `jiuguang-day2-escape` | 引力之阱 | `python gioush-judge.py run jiuguang-day2-escape main.cpp` |
-| `jiuguang-day2-trade` | 商路照影 | `python gioush-judge.py run jiuguang-day2-trade main.cpp` |
-| `jiuguang-day2-wind` | 逐风 | `python gioush-judge.py run jiuguang-day2-wind main.cpp` |
+| `jiuguang-day2-reset` | 归零 | `gioush-judge.cmd run jiuguang-day2-reset main.cpp` |
+| `jiuguang-day2-escape` | 引力之阱 | `gioush-judge.cmd run jiuguang-day2-escape main.cpp` |
+| `jiuguang-day2-trade` | 商路照影 | `gioush-judge.cmd run jiuguang-day2-trade main.cpp` |
+| `jiuguang-day2-wind` | 逐风 | `gioush-judge.cmd run jiuguang-day2-wind main.cpp` |
 
 ## 评测说明
 
