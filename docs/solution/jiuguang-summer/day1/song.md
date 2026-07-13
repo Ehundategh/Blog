@@ -36,7 +36,72 @@ $$
 
 这里的思想可以直接推广到正解。
 
-## 正解一
+## 正解一：直接 DP
+
+本题还有一种更直接的写法。
+
+对于一个固定的成员 $S_i$，令
+
+$$
+f_j=\operatorname{LCP}(T[j\ldots],S_i[j\ldots]).
+$$
+
+若 $T_j=S_{i,j}$，则
+
+$$
+f_j=f_{j+1}+1.
+$$
+
+否则 $f_j=0$。因此对于每个成员串，都可以从后往前扫一遍，直接得到它在所有不可用前缀长度下的匹配长度。
+
+询问给出 $l$ 时，实际比较的是 $T[l+1\ldots]$ 与 $S_i[l+1\ldots]$。也就是说，当我们在处理位置 $j$ 时，它对应的不可用前缀长度就是 $j-1$。于是可以在预处理每个成员串时，顺手更新每个 $l$ 的最优成员编号。
+
+按照成员编号从小到大处理，并且只在匹配长度严格更大时更新答案，就可以自然保证平局时取编号较小者。
+
+时间复杂度为
+
+$$
+\mathcal{O}\left(\sum_i \min(|T|,|S_i|)+q\right),
+$$
+
+空间复杂度为 $\mathcal{O}(|T|)$。
+
+```cpp
+#include <cstdio>
+#include <cstring>
+#include <algorithm>
+#define MAXN 12
+#define MAXL 2000010
+using namespace std;
+int n,q,StLen,Len,BestLen[MAXL],BestId[MAXL],a;
+char T[MAXL],S[MAXL];
+int main(){
+    scanf("%s",T+1);
+    StLen=strlen(T+1);
+    scanf("%d%d",&n,&q);
+    for(int i=0;i<=StLen;i++) BestId[i]=1;
+    for(int i=1;i<=n;i++){
+        scanf("%s",S+1);
+        Len=strlen(S+1);
+        int Lim=min(StLen,Len),Now=0;
+        for(int j=Lim;j>=1;j--){
+            if(T[j]==S[j]) Now++;
+            else Now=0;
+            if(Now>BestLen[j-1]){
+                BestLen[j-1]=Now;
+                BestId[j-1]=i;
+            }
+        }
+    }
+    while(q-->0){
+        scanf("%d",&a);
+        printf("%d\n",BestId[a]);
+    }
+    return 0;
+}
+```
+
+## 正解二：Hash
 
 本题中 $n$ 很小，最大只有 $10$，而总字符串长度和询问数较大。
 
@@ -52,7 +117,7 @@ $$
 \mathcal{O}\left(\sum |S|+|T|+qn\log \min(|S_i|,|T|)\right)
 $$
 
-## 正解二
+## 正解三：后缀数组
 
 也可以使用后缀数组完成本题。
 

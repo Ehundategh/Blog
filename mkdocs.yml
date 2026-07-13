@@ -115,5 +115,11 @@ nav:
               - 相聚: solution/jiuguang-summer/day1/gather.md
               - 流光之歌: solution/jiuguang-summer/day1/song.md
               - 峰翠铜炉: solution/jiuguang-summer/day1/mount.md
+          - 第二天:
+              - 总览: solution/jiuguang-summer/day2/index.md
+              - 归零: solution/jiuguang-summer/day2/reset.md
+              - 引力之阱: solution/jiuguang-summer/day2/escape.md
+              - 商路烛影: solution/jiuguang-summer/day2/trade.md
+              - 逐风: solution/jiuguang-summer/day2/wind.md
   - 杂项:
       - 总览: misc/index.md
