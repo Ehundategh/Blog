@@ -1,4 +1,4 @@
-# 商路照影
+﻿# 商路照影
 
 ## 题意简述
 
@@ -51,7 +51,7 @@ $$
 要求左儿子子树内权值小于 $w_x$ 的节点数量，即
 
 $$
-\#\{u:\operatorname{Dfn}(u)\in[\operatorname{MinD}(l_x),\operatorname{MaxD}(l_x)],\ w_u<w_x\}.
+\left|\{u:\operatorname{Dfn}(u)\in[\operatorname{MinD}(l_x),\operatorname{MaxD}(l_x)],\ w_u<w_x\}\right|.
 $$
 
 将权值离散化后，严格小于 $w_x$ 等价于离散化权值不超过 $\operatorname{Rank}(w_x)-1$。于是可以把这次询问拆成两个前缀：
@@ -67,7 +67,7 @@ $$
 右儿子子树内权值大于 $w_x$ 的节点数量同理。若总权值排名数为 $m$，则
 
 $$
-\#\{u:\operatorname{Dfn}(u)\leq p,\ w_u>w_x\}
+\left|\{u:\operatorname{Dfn}(u)\leq p,\ w_u>w_x\}\right|
 =\operatorname{Ask}(p,m)-\operatorname{Ask}(p,\operatorname{Rank}(w_x)).
 $$
 
@@ -177,3 +177,4 @@ int main() {
     return 0;
 }
 ```
+

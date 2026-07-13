@@ -1,10 +1,11 @@
-# 第一天
+﻿# 第一天
 
 本场为九光暑假第一天训练赛，时间为 2026 年 7 月 11 日，出题人为 Ehundategh。
 
 ## 下发文件
 
 - [题面 PDF 下载](/Blog/assets/solution/jiuguang-summer/day1/statement.pdf)
+- [题解 Beamer 下载](/Blog/assets/solution/jiuguang-summer/day1/solution-beamer.pdf)
 - [题面、样例与参考代码](/Blog/assets/solution/jiuguang-summer/day1/files.zip)
 
 ## Std 与数据

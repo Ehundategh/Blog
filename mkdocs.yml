@@ -105,6 +105,8 @@ nav:
           - 树的重心: graph/tree/centroid.md
   - 计算几何:
       - 总览: geometry/index.md
+  - 补题 OJ:
+      - 总览: oj/index.md
   - 题目以及题解:
       - 总览: solution/index.md
       - 九光暑假:

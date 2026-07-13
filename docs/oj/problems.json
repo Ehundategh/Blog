@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "baseUrl": "https://ehundategh.github.io/Blog",
+  "problems": [
+    {
+      "id": "jiuguang-day1-road",
+      "title": "道路建设",
+      "source": "九光暑假第一天 T1",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "road.in",
+      "outputFile": "road.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day1/data-road.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day1/road/",
+      "tests": { "count": 20, "scoreEach": 5 }
+    },
+    {
+      "id": "jiuguang-day1-gather",
+      "title": "相聚",
+      "source": "九光暑假第一天 T2",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "gather.in",
+      "outputFile": "gather.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day1/data-gather.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day1/gather/",
+      "tests": { "count": 20, "scoreEach": 5 }
+    },
+    {
+      "id": "jiuguang-day1-song",
+      "title": "流光之歌",
+      "source": "九光暑假第一天 T3",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "song.in",
+      "outputFile": "song.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day1/data-song.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day1/song/",
+      "tests": { "count": 20, "scoreEach": 5 }
+    },
+    {
+      "id": "jiuguang-day1-mount",
+      "title": "峰翠铜炉",
+      "source": "九光暑假第一天 T4",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "mount.in",
+      "outputFile": "mount.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day1/data-mount.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day1/mount/",
+      "tests": { "count": 25, "scoreEach": 4 }
+    },
+    {
+      "id": "jiuguang-day2-reset",
+      "title": "归零",
+      "source": "九光暑假第二天 T1",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "reset.in",
+      "outputFile": "reset.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day2/data-reset.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day2/reset/",
+      "tests": { "count": 20, "scoreEach": 5 }
+    },
+    {
+      "id": "jiuguang-day2-escape",
+      "title": "引力之阱",
+      "source": "九光暑假第二天 T2",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "escape.in",
+      "outputFile": "escape.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day2/data-escape.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day2/escape/",
+      "tests": { "count": 25, "scoreEach": 4 }
+    },
+    {
+      "id": "jiuguang-day2-trade",
+      "title": "商路照影",
+      "source": "九光暑假第二天 T3",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "trade.in",
+      "outputFile": "trade.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day2/data-trade.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day2/trade/",
+      "tests": { "count": 20, "scoreEach": 5 }
+    },
+    {
+      "id": "jiuguang-day2-wind",
+      "title": "逐风",
+      "source": "九光暑假第二天 T4",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "wind.in",
+      "outputFile": "wind.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day2/data-wind.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day2/wind/",
+      "tests": { "count": 20, "scoreEach": 5 }
+    }
+  ]
+}
