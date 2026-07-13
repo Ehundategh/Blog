@@ -9,7 +9,7 @@
 - [gioush-judge-windows.zip](/Blog/assets/oj/gioush-judge-windows.zip)
 - [gioush-judge.py](/Blog/assets/oj/gioush-judge.py)
 
-Windows 下推荐下载 `gioush-judge-windows.zip`。解压后可以使用可视化入口，也可以继续使用命令行入口。这个版本不需要 Python。
+Windows 下推荐下载 `gioush-judge-windows.zip`。解压后直接运行 `Gioush Judge.exe`，也可以继续使用命令行入口。这个版本不需要 Python。
 
 需要本机已经安装：
 
@@ -26,16 +26,10 @@ g++ --version
 在解压目录中运行：
 
 ```bat
-gioush-judge-gui.cmd
+Gioush Judge.exe
 ```
 
-评测器会打开本地页面：
-
-```text
-http://127.0.0.1:8765/
-```
-
-可以在页面中注册本地账号、登录、查看题目列表、选择源文件路径、开始评测并导出报告。账号只保存在本机，不用于公网排名。
+可以在软件中注册本地账号、登录、查看题目列表、选择源文件并直接 `Submit`。账号只保存在本机，不用于公网排名。
 
 ## 命令行使用
 

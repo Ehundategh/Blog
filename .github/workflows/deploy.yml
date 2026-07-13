@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,8 +28,24 @@ jobs:
         with:
           python-version: "3.x"
 
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Build Windows judge package
+        shell: pwsh
+        run: |
+          $publish = "build/gioush-judge-win"
+          Remove-Item -LiteralPath $publish -Recurse -Force -ErrorAction SilentlyContinue
+          dotnet publish tools/gioush-judge-app/GioushJudge/GioushJudge.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -o $publish
+          Copy-Item -LiteralPath tools/gioush-judge-win/gioush-judge.ps1 -Destination $publish -Force
+          Copy-Item -LiteralPath tools/gioush-judge-win/gioush-judge.cmd -Destination $publish -Force
+          Copy-Item -LiteralPath tools/gioush-judge-win/README.md -Destination $publish -Force
+          Compress-Archive -Path "$publish/*" -DestinationPath docs/assets/oj/gioush-judge-windows.zip -Force
 
       - name: Build site
         run: mkdocs build --strict
@@ -49,4 +65,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
