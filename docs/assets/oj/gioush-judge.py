@@ -31,11 +31,31 @@ def records_path():
     return home_dir() / "records.json"
 
 
+def profile_path():
+    home_dir().mkdir(parents=True, exist_ok=True)
+    return home_dir() / "profile.json"
+
+
+def now_iso():
+    return datetime.now(timezone.utc).isoformat()
+
+
+def load_profile():
+    path = profile_path()
+    if not path.exists():
+        return {"name": "", "handle": ""}
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def save_profile(profile):
+    profile_path().write_text(json.dumps(profile, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
 def read_text_or_url(source):
     if re.match(r"^https?://", source):
         with urllib.request.urlopen(source) as response:
-            return response.read().decode("utf-8")
-    return Path(source).read_text(encoding="utf-8")
+            return response.read().decode("utf-8-sig")
+    return Path(source).read_text(encoding="utf-8-sig")
 
 
 def load_manifest(source):
@@ -162,7 +182,7 @@ def load_records():
     path = records_path()
     if not path.exists():
         return {}
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
 def save_record(problem, source, results, score):
@@ -170,10 +190,11 @@ def save_record(problem, source, results, score):
     pid = problem["id"]
     accepted = all(item["result"] == "AC" for item in results)
     entry = {
-        "time": datetime.now(timezone.utc).isoformat(),
+        "time": now_iso(),
         "source": str(source),
         "score": score,
         "result": "AC" if accepted else "Unaccepted",
+        "profile": load_profile(),
         "cases": results,
     }
     old = records.get(pid, {})
@@ -203,6 +224,110 @@ def command_records(args):
     for pid, item in records.items():
         mark = "AC" if item.get("accepted") else str(item.get("bestScore", 0))
         print(f"{pid:<24} {mark:<4} {item.get('title', '')}")
+
+
+def command_profile(args):
+    profile = load_profile()
+    changed = False
+    if args.name is not None:
+        profile["name"] = args.name
+        changed = True
+    if args.handle is not None:
+        profile["handle"] = args.handle
+        changed = True
+    if changed:
+        profile["updatedAt"] = now_iso()
+        save_profile(profile)
+    print("Profile")
+    print(f"  name:   {profile.get('name', '')}")
+    print(f"  handle: {profile.get('handle', '')}")
+
+
+def record_for_export(problem_id):
+    records = load_records()
+    if problem_id not in records:
+        raise RuntimeError(f"No local record for {problem_id}")
+    item = records[problem_id]
+    submissions = item.get("submissions", [])
+    if not submissions:
+        raise RuntimeError(f"No submissions for {problem_id}")
+    return item, submissions[-1]
+
+
+def build_report(problem, record, submission):
+    return {
+        "version": 2,
+        "exportedAt": now_iso(),
+        "profile": submission.get("profile") or load_profile(),
+        "problem": {
+            "id": problem["id"],
+            "title": problem["title"],
+            "source": problem.get("source", ""),
+            "origin": problem.get("origin", ""),
+            "originUrl": problem.get("originUrl", ""),
+            "statementUrl": problem.get("statementUrl", ""),
+        },
+        "record": {
+            "bestScore": record.get("bestScore", 0),
+            "accepted": bool(record.get("accepted", False)),
+            "lastRunAt": record.get("lastRunAt", ""),
+        },
+        "submission": submission,
+    }
+
+
+def report_markdown(report):
+    profile = report["profile"]
+    problem = report["problem"]
+    submission = report["submission"]
+    lines = [
+        "# Gioush Judge Report",
+        "",
+        f"- 选手：{profile.get('name') or '-'}",
+        f"- Handle：{profile.get('handle') or '-'}",
+        f"- 题目：{problem['title']} (`{problem['id']}`)",
+        f"- 场次：{problem.get('source') or '-'}",
+    ]
+    if problem.get("origin"):
+        if problem.get("originUrl"):
+            lines.append(f"- 来源：[{problem['origin']}]({problem['originUrl']})")
+        else:
+            lines.append(f"- 来源：{problem['origin']}")
+    lines += [
+        f"- 提交时间：{submission.get('time', '')}",
+        f"- 源文件：`{submission.get('source', '')}`",
+        f"- 结果：{submission.get('result', '')}",
+        f"- 分数：{submission.get('score', 0)} / 100",
+        "",
+        "| 测试点 | 结果 | 时间 |",
+        "| --- | --- | --- |",
+    ]
+    for item in submission.get("cases", []):
+        lines.append(f"| `{item.get('case', '')}` | {item.get('result', '')} | {item.get('timeMs', 0)} ms |")
+    lines.append("")
+    lines.append("本报告由本地评测器生成，只作为补题自测记录。")
+    return "\n".join(lines)
+
+
+def command_export(args):
+    manifest = load_manifest(args.manifest)
+    problems = problem_map(manifest)
+    if args.problem_id not in problems:
+        raise RuntimeError(f"Unknown problem id: {args.problem_id}")
+    record, submission = record_for_export(args.problem_id)
+    report = build_report(problems[args.problem_id], record, submission)
+
+    if args.format == "json":
+        text = json.dumps(report, ensure_ascii=False, indent=2)
+        suffix = ".json"
+    else:
+        text = report_markdown(report)
+        suffix = ".md"
+
+    out = Path(args.out) if args.out else home_dir() / "exports" / (args.problem_id + suffix)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(text, encoding="utf-8")
+    print(out)
 
 
 def command_run(args):
@@ -254,6 +379,15 @@ def build_parser():
     run.add_argument("source")
 
     sub.add_parser("records")
+
+    profile = sub.add_parser("profile")
+    profile.add_argument("--name")
+    profile.add_argument("--handle")
+
+    export = sub.add_parser("export")
+    export.add_argument("problem_id")
+    export.add_argument("--format", choices=["json", "md"], default="md")
+    export.add_argument("--out")
     return parser
 
 
@@ -267,6 +401,10 @@ def main():
             command_run(args)
         elif args.command == "records":
             command_records(args)
+        elif args.command == "profile":
+            command_profile(args)
+        elif args.command == "export":
+            command_export(args)
     except Exception as exc:
         print(f"Error: {exc}", file=sys.stderr)
         sys.exit(1)

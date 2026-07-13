@@ -15,9 +15,9 @@
 | 题目 | 来源 | Std | 数据点 | 数据 |
 | --- | --- | --- | --- | --- |
 | 归零 | 原创 | [reset.cpp](/Blog/assets/solution/jiuguang-summer/day2/std/reset.cpp) | $20$ 组输入，$20$ 组答案 | [data-reset.zip](/Blog/assets/solution/jiuguang-summer/day2/data-reset.zip) |
-| 引力之阱 | 改编自球星空间产生器 | [escape.cpp](/Blog/assets/solution/jiuguang-summer/day2/std/escape.cpp) | $25$ 组输入，$25$ 组答案 | [data-escape.zip](/Blog/assets/solution/jiuguang-summer/day2/data-escape.zip) |
+| 引力之阱 | 改编自 [P4035 [JSOI2008] 球形空间产生器](https://www.luogu.com.cn/problem/P4035) | [escape.cpp](/Blog/assets/solution/jiuguang-summer/day2/std/escape.cpp) | $25$ 组输入，$25$ 组答案 | [data-escape.zip](/Blog/assets/solution/jiuguang-summer/day2/data-escape.zip) |
 | 商路照影 | 原创 | [trade.cpp](/Blog/assets/solution/jiuguang-summer/day2/std/trade.cpp) | $20$ 组输入，$20$ 组答案 | [data-trade.zip](/Blog/assets/solution/jiuguang-summer/day2/data-trade.zip) |
-| 逐风 | 省选联考 2024 季风 | [wind.cpp](/Blog/assets/solution/jiuguang-summer/day2/std/wind.cpp) | $20$ 组输入，$20$ 组答案 | [data-wind.zip](/Blog/assets/solution/jiuguang-summer/day2/data-wind.zip) |
+| 逐风 | [P10217 [省选联考 2024] 季风](https://www.luogu.com.cn/problem/P10217) | [wind.cpp](/Blog/assets/solution/jiuguang-summer/day2/std/wind.cpp) | $20$ 组输入，$20$ 组答案 | [data-wind.zip](/Blog/assets/solution/jiuguang-summer/day2/data-wind.zip) |
 
 ## 题目简述
 

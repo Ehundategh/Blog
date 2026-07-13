@@ -42,6 +42,35 @@ python gioush-judge.py list
 python gioush-judge.py records
 ```
 
+## Period 2：本地身份与评测报告
+
+这一阶段仍然不依赖服务器。评测器可以在本机保存一个身份，并把最近一次评测结果导出成报告，方便之后人工收档或自行留存。
+
+设置本地身份：
+
+```bash
+python gioush-judge.py profile --name Ehundategh --handle Ehundategh
+```
+
+查看本地身份：
+
+```bash
+python gioush-judge.py profile
+```
+
+导出某题最近一次评测报告：
+
+```bash
+python gioush-judge.py export jiuguang-day2-wind --format md
+python gioush-judge.py export jiuguang-day2-wind --format json
+```
+
+默认报告会写入：
+
+```text
+~/.gioush-judge/exports/
+```
+
 ## 题目列表
 
 ### 九光暑假第一天
