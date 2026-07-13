@@ -1,4 +1,4 @@
-# 商路烛影
+# 商路照影
 
 ## 题意简述
 
@@ -20,7 +20,7 @@
 
 每个权值在树的每一层至多参与一次归并，总时间复杂度为 $\mathcal{O}(n\log n)$。
 
-## 正解
+## 正解一：按权值扫描
 
 首先对原树进行一次 DFS，求出每个节点的 DFN 序与子树大小。这样任意一个节点 $u$ 的子树都对应 DFN 序上的连续区间。
 
@@ -32,7 +32,60 @@
 
 同理，将所有节点按照权值从大到小处理，树状数组中只保留权值大于 $w_x$ 的节点，在右儿子子树对应的区间上查询即可得到 $R_x$。相同权值仍然需要先查询、后加入。
 
-最后计算 $\sum_x L_xR_x$ 即可。排序的时间复杂度为 $\mathcal{O}(n\log n)$，树状数组操作的总时间复杂度为 $\mathcal{O}(n\log n)$，空间复杂度为 $\mathcal{O}(n)$。
+最后计算 $\sum_x L_xR_x$ 即可。
+
+这是一种较自然的二维偏序维护方式：把权值这一维作为扫描顺序，把 DFN 这一维放进树状数组中维护。
+
+排序的时间复杂度为 $\mathcal{O}(n\log n)$，树状数组操作的总时间复杂度为 $\mathcal{O}(n\log n)$，空间复杂度为 $\mathcal{O}(n)$。
+
+## 正解二：按 DFN 扫描
+
+也可以将二维偏序的两个维度交换。
+
+我们仍然先 DFS 得到每个节点的 DFN。设节点 $x$ 的左儿子为 $l_x$，右儿子为 $r_x$。如果 $l_x$ 非空，那么 $l_x$ 子树在 DFN 序上对应一段区间
+
+$$
+[\operatorname{MinD}(l_x),\operatorname{MaxD}(l_x)].
+$$
+
+要求左儿子子树内权值小于 $w_x$ 的节点数量，即
+
+$$
+\#\{u:\operatorname{Dfn}(u)\in[\operatorname{MinD}(l_x),\operatorname{MaxD}(l_x)],\ w_u<w_x\}.
+$$
+
+将权值离散化后，严格小于 $w_x$ 等价于离散化权值不超过 $\operatorname{Rank}(w_x)-1$。于是可以把这次询问拆成两个前缀：
+
+$$
+\operatorname{Ask}(\operatorname{MaxD}(l_x),\operatorname{Rank}(w_x)-1)
+-
+\operatorname{Ask}(\operatorname{MinD}(l_x)-1,\operatorname{Rank}(w_x)-1).
+$$
+
+其中 $\operatorname{Ask}(p,v)$ 表示在 DFN 前缀 $[1,p]$ 中，权值排名不超过 $v$ 的节点数量。
+
+右儿子子树内权值大于 $w_x$ 的节点数量同理。若总权值排名数为 $m$，则
+
+$$
+\#\{u:\operatorname{Dfn}(u)\leq p,\ w_u>w_x\}
+=\operatorname{Ask}(p,m)-\operatorname{Ask}(p,\operatorname{Rank}(w_x)).
+$$
+
+因此每个右儿子区间同样可以拆成两个 DFN 前缀。
+
+具体实现时，将所有形如 $\operatorname{Ask}(p,v)$ 的询问按照 $p$ 从小到大排序。然后按 DFN 从小到大扫描节点，每扫到一个节点，就把它的权值排名加入树状数组。此时树状数组维护的是“当前 DFN 前缀中，各权值排名出现了多少次”。处理询问 $\operatorname{Ask}(p,v)$ 时，树状数组中恰好已经加入了 DFN 不超过 $p$ 的节点，查询权值前缀和即可。
+
+代码中的 `Q` 结构体正是在记录这些前缀询问：
+
+- `DFN` 表示前缀右端点 $p$；
+- `Value` 表示权值阈值 $v$；
+- `Times` 表示区间差分中的 $+1$ 或 $-1$；
+- `From=0` 表示统计左儿子子树内的小于部分；
+- `From=1` 表示统计右儿子子树内的大于部分。
+
+这一做法与正解一维护的是同一个二维偏序，只是扫描维度从权值换成了 DFN，树状数组中维护的维度也随之从 DFN 换成了权值。
+
+时间复杂度仍为 $\mathcal{O}(n\log n)$，空间复杂度为 $\mathcal{O}(n)$。下面代码采用这种写法。
 
 ## 参考代码
 

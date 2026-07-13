@@ -16,7 +16,7 @@
 | --- | --- | --- | --- | --- |
 | 归零 | 原创 | [reset.cpp](/Blog/assets/solution/jiuguang-summer/day2/std/reset.cpp) | $20$ 组输入，$20$ 组答案 | [data-reset.zip](/Blog/assets/solution/jiuguang-summer/day2/data-reset.zip) |
 | 引力之阱 | 原创 | [escape.cpp](/Blog/assets/solution/jiuguang-summer/day2/std/escape.cpp) | $25$ 组输入，$25$ 组答案 | [data-escape.zip](/Blog/assets/solution/jiuguang-summer/day2/data-escape.zip) |
-| 商路烛影 | 原创 | [trade.cpp](/Blog/assets/solution/jiuguang-summer/day2/std/trade.cpp) | $20$ 组输入，$20$ 组答案 | [data-trade.zip](/Blog/assets/solution/jiuguang-summer/day2/data-trade.zip) |
+| 商路照影 | 原创 | [trade.cpp](/Blog/assets/solution/jiuguang-summer/day2/std/trade.cpp) | $20$ 组输入，$20$ 组答案 | [data-trade.zip](/Blog/assets/solution/jiuguang-summer/day2/data-trade.zip) |
 | 逐风 | 原创 | [wind.cpp](/Blog/assets/solution/jiuguang-summer/day2/std/wind.cpp) | $20$ 组输入，$20$ 组答案 | [data-wind.zip](/Blog/assets/solution/jiuguang-summer/day2/data-wind.zip) |
 
 ## 题目简述
@@ -29,7 +29,7 @@
 
 给出 $n+1$ 个 $n$ 维点及其到某个未知点的距离平方，求这个未知点的坐标。
 
-### 商路烛影
+### 商路照影
 
 给定一棵有根二叉树，第 $i$ 个节点的权值为 $w_i$。对于每个节点 $x$，统计满足 $u$ 在 $x$ 的左儿子子树内，$v$ 在 $x$ 的右儿子子树内，并且 $w_u<w_x<w_v$ 的有序点对 $(u,v)$ 数量。
 
@@ -41,5 +41,5 @@
 
 - [归零](reset.md)
 - [引力之阱](escape.md)
-- [商路烛影](trade.md)
+- [商路照影](trade.md)
 - [逐风](wind.md)
