@@ -15,8 +15,8 @@
 | 题目 | 来源 | Std | 数据点 | 数据 |
 | --- | --- | --- | --- | --- |
 | 夜奔 | 原创 | [dash.cpp](/Blog/assets/solution/jiuguang-summer/day3/std/dash.cpp) | $20$ 组输入，$20$ 组答案 | [data-dash.zip](/Blog/assets/solution/jiuguang-summer/day3/data-dash.zip) |
-| 何以为我 | 原创 | [upline.cpp](/Blog/assets/solution/jiuguang-summer/day3/std/upline.cpp) | $20$ 组输入，$20$ 组答案 | [data-upline.zip](/Blog/assets/solution/jiuguang-summer/day3/data-upline.zip) |
-| 浮光掠影 | 原创 | [sunset.cpp](/Blog/assets/solution/jiuguang-summer/day3/std/sunset.cpp) | $20$ 组输入，$20$ 组答案 | [data-sunset.zip](/Blog/assets/solution/jiuguang-summer/day3/data-sunset.zip) |
+| 何以为我 | 改编自 [P1637 三元上升子序列](https://www.luogu.com.cn/problem/P1637) | [upline.cpp](/Blog/assets/solution/jiuguang-summer/day3/std/upline.cpp) | $20$ 组输入，$20$ 组答案 | [data-upline.zip](/Blog/assets/solution/jiuguang-summer/day3/data-upline.zip) |
+| 浮光掠影 | 改编自 [P4513 小白逛公园](https://www.luogu.com.cn/problem/P4513) | [sunset.cpp](/Blog/assets/solution/jiuguang-summer/day3/std/sunset.cpp) | $20$ 组输入，$20$ 组答案 | [data-sunset.zip](/Blog/assets/solution/jiuguang-summer/day3/data-sunset.zip) |
 | 锦鲤 | 原创 | [fish.cpp](/Blog/assets/solution/jiuguang-summer/day3/std/fish.cpp) | $25$ 组输入，$25$ 组答案 | [data-fish.zip](/Blog/assets/solution/jiuguang-summer/day3/data-fish.zip) |
 
 ## 题目简述

@@ -154,7 +154,9 @@
       "tests": {
         "count": 20,
         "scoreEach": 5
-      }
+      },
+      "origin": "P1637 三元上升子序列",
+      "originUrl": "https://www.luogu.com.cn/problem/P1637"
     },
     {
       "id": "jiuguang-day3-sunset",
@@ -169,7 +171,9 @@
       "tests": {
         "count": 20,
         "scoreEach": 5
-      }
+      },
+      "origin": "P4513 小白逛公园",
+      "originUrl": "https://www.luogu.com.cn/problem/P4513"
     },
     {
       "id": "jiuguang-day3-fish",
