@@ -6,3 +6,4 @@
 
 - [第一天](day1/index.md)
 - [第二天](day2/index.md)
+- [第三天](day3/index.md)

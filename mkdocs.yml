@@ -123,5 +123,11 @@ nav:
               - 引力之阱: solution/jiuguang-summer/day2/escape.md
               - 商路照影: solution/jiuguang-summer/day2/trade.md
               - 逐风: solution/jiuguang-summer/day2/wind.md
+          - 第三天:
+              - 总览: solution/jiuguang-summer/day3/index.md
+              - 夜奔: solution/jiuguang-summer/day3/dash.md
+              - 何以为我: solution/jiuguang-summer/day3/upline.md
+              - 浮光掠影: solution/jiuguang-summer/day3/sunset.md
+              - 锦鲤: solution/jiuguang-summer/day3/fish.md
   - 杂项:
       - 总览: misc/index.md

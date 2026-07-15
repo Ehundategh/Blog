@@ -12,7 +12,10 @@
       "outputFile": "road.out",
       "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day1/data-road.zip",
       "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day1/road/",
-      "tests": { "count": 20, "scoreEach": 5 }
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
     },
     {
       "id": "jiuguang-day1-gather",
@@ -24,7 +27,10 @@
       "outputFile": "gather.out",
       "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day1/data-gather.zip",
       "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day1/gather/",
-      "tests": { "count": 20, "scoreEach": 5 }
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
     },
     {
       "id": "jiuguang-day1-song",
@@ -36,7 +42,10 @@
       "outputFile": "song.out",
       "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day1/data-song.zip",
       "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day1/song/",
-      "tests": { "count": 20, "scoreEach": 5 }
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
     },
     {
       "id": "jiuguang-day1-mount",
@@ -48,7 +57,10 @@
       "outputFile": "mount.out",
       "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day1/data-mount.zip",
       "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day1/mount/",
-      "tests": { "count": 25, "scoreEach": 4 }
+      "tests": {
+        "count": 25,
+        "scoreEach": 4
+      }
     },
     {
       "id": "jiuguang-day2-reset",
@@ -60,7 +72,10 @@
       "outputFile": "reset.out",
       "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day2/data-reset.zip",
       "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day2/reset/",
-      "tests": { "count": 20, "scoreEach": 5 }
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
     },
     {
       "id": "jiuguang-day2-escape",
@@ -74,7 +89,10 @@
       "outputFile": "escape.out",
       "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day2/data-escape.zip",
       "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day2/escape/",
-      "tests": { "count": 25, "scoreEach": 4 }
+      "tests": {
+        "count": 25,
+        "scoreEach": 4
+      }
     },
     {
       "id": "jiuguang-day2-trade",
@@ -86,7 +104,10 @@
       "outputFile": "trade.out",
       "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day2/data-trade.zip",
       "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day2/trade/",
-      "tests": { "count": 20, "scoreEach": 5 }
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
     },
     {
       "id": "jiuguang-day2-wind",
@@ -100,7 +121,70 @@
       "outputFile": "wind.out",
       "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day2/data-wind.zip",
       "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day2/wind/",
-      "tests": { "count": 20, "scoreEach": 5 }
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
+    },
+    {
+      "id": "jiuguang-day3-dash",
+      "title": "夜奔",
+      "source": "九光暑假第三天 T1",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "dash.in",
+      "outputFile": "dash.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day3/data-dash.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day3/dash/",
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
+    },
+    {
+      "id": "jiuguang-day3-upline",
+      "title": "何以为我",
+      "source": "九光暑假第三天 T2",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "upline.in",
+      "outputFile": "upline.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day3/data-upline.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day3/upline/",
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
+    },
+    {
+      "id": "jiuguang-day3-sunset",
+      "title": "浮光掠影",
+      "source": "九光暑假第三天 T3",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "sunset.in",
+      "outputFile": "sunset.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day3/data-sunset.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day3/sunset/",
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
+    },
+    {
+      "id": "jiuguang-day3-fish",
+      "title": "锦鲤",
+      "source": "九光暑假第三天 T4",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 256,
+      "inputFile": "fish.in",
+      "outputFile": "fish.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day3/data-fish.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day3/fish/",
+      "tests": {
+        "count": 25,
+        "scoreEach": 4
+      }
     }
   ]
 }
