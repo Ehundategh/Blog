@@ -233,7 +233,9 @@
       "tests": {
         "count": 20,
         "scoreEach": 5
-      }
+      },
+      "origin": "P3594 [POI 2015 R3] 狼坑 Trous de loup",
+      "originUrl": "https://www.luogu.com.cn/problem/P3594"
     },
     {
       "id": "jiuguang-day5-smoke",
@@ -280,7 +282,9 @@
       "tests": {
         "count": 25,
         "scoreEach": 4
-      }
+      },
+      "origin": "CF1795E Explosions?",
+      "originUrl": "https://www.luogu.com.cn/problem/CF1795E"
     },
     {
       "id": "jiuguang-day5-revolt",

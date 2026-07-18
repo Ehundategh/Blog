@@ -16,8 +16,8 @@
 | --- | --- | --- | --- | --- |
 | 灰蕈迷境 | 原创 | [spore.cpp](/Blog/assets/solution/jiuguang-summer/day4/std/spore.cpp) | $20$ 组输入，$20$ 组答案 | [data-spore.zip](/Blog/assets/solution/jiuguang-summer/day4/data-spore.zip) |
 | 银淞止境 | 原创 | [rime.cpp](/Blog/assets/solution/jiuguang-summer/day4/std/rime.cpp) | $25$ 组输入，$25$ 组答案 | [data-rime.zip](/Blog/assets/solution/jiuguang-summer/day4/data-rime.zip) |
-| 无终奇语 | 原创 | [fable.cpp](/Blog/assets/solution/jiuguang-summer/day4/std/fable.cpp) | $20$ 组输入，$20$ 组答案 | [data-fable.zip](/Blog/assets/solution/jiuguang-summer/day4/data-fable.zip) |
-| 黑流树海 | 原创 | [tide.cpp](/Blog/assets/solution/jiuguang-summer/day4/std/tide.cpp) | $25$ 组输入，$25$ 组答案 | [data-tide-part1.zip](/Blog/assets/solution/jiuguang-summer/day4/data-tide-part1.zip)，[data-tide-part2.zip](/Blog/assets/solution/jiuguang-summer/day4/data-tide-part2.zip) |
+| 无终奇语 | 改编自 [P3594 [POI 2015 R3] 狼坑 Trous de loup](https://www.luogu.com.cn/problem/P3594) | [fable.cpp](/Blog/assets/solution/jiuguang-summer/day4/std/fable.cpp) | $20$ 组输入，$20$ 组答案 | [data-fable.zip](/Blog/assets/solution/jiuguang-summer/day4/data-fable.zip) |
+| 黑流树海 | 改编自 [P6419 [COCI 2014/2015 #1] Kamp](https://www.luogu.com.cn/problem/P6419) | [tide.cpp](/Blog/assets/solution/jiuguang-summer/day4/std/tide.cpp) | $25$ 组输入，$25$ 组答案 | [data-tide-part1.zip](/Blog/assets/solution/jiuguang-summer/day4/data-tide-part1.zip)，[data-tide-part2.zip](/Blog/assets/solution/jiuguang-summer/day4/data-tide-part2.zip) |
 
 !!! note "黑流树海数据包说明"
     `tide` 的完整数据超过 GitHub 单文件限制，因此拆为两份：`part1` 包含测试点 $1\sim 15$，`part2` 包含测试点 $16\sim 25$。

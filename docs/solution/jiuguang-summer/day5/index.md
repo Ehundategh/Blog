@@ -16,7 +16,7 @@
 | --- | --- | --- | --- | --- |
 | 我流奥义 | 原创 | [smoke.cpp](/Blog/assets/solution/jiuguang-summer/day5/std/smoke.cpp) | $20$ 组输入，$20$ 组答案 | [data-smoke.zip](/Blog/assets/solution/jiuguang-summer/day5/data-smoke.zip) |
 | 星语楠尘 | 改编自 [CF763A Timofey and a tree](https://www.luogu.com.cn/problem/CF763A) | [stardust.cpp](/Blog/assets/solution/jiuguang-summer/day5/std/stardust.cpp) | $20$ 组输入，$20$ 组答案 | [data-stardust.zip](/Blog/assets/solution/jiuguang-summer/day5/data-stardust.zip) |
-| 日月风随 | 原创 | [solwind.cpp](/Blog/assets/solution/jiuguang-summer/day5/std/solwind.cpp) | $25$ 组输入，$25$ 组答案 | [data-solwind.zip](/Blog/assets/solution/jiuguang-summer/day5/data-solwind.zip) |
+| 日月风随 | 改编自 [CF1795E Explosions?](https://www.luogu.com.cn/problem/CF1795E) | [solwind.cpp](/Blog/assets/solution/jiuguang-summer/day5/std/solwind.cpp) | $25$ 组输入，$25$ 组答案 | [data-solwind.zip](/Blog/assets/solution/jiuguang-summer/day5/data-solwind.zip) |
 | 推翻暴政 | 原创 | [revolt.cpp](/Blog/assets/solution/jiuguang-summer/day5/std/revolt.cpp) | $25$ 组输入，$25$ 组答案 | [data-revolt.zip](/Blog/assets/solution/jiuguang-summer/day5/data-revolt.zip) |
 
 ## 题目简述
