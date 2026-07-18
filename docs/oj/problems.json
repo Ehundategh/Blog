@@ -189,6 +189,113 @@
         "count": 25,
         "scoreEach": 4
       }
+    },
+    {
+      "id": "jiuguang-day4-spore",
+      "title": "灰蕈迷境",
+      "source": "九光暑假第四天 T1",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 512,
+      "inputFile": "spore.in",
+      "outputFile": "spore.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day4/data-spore.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day4/spore/",
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
+    },
+    {
+      "id": "jiuguang-day4-rime",
+      "title": "银淞止境",
+      "source": "九光暑假第四天 T2",
+      "timeLimitMs": 2000,
+      "memoryLimitMb": 512,
+      "inputFile": "rime.in",
+      "outputFile": "rime.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day4/data-rime.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day4/rime/",
+      "tests": {
+        "count": 25,
+        "scoreEach": 4
+      }
+    },
+    {
+      "id": "jiuguang-day4-fable",
+      "title": "无终奇语",
+      "source": "九光暑假第四天 T3",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 512,
+      "inputFile": "fable.in",
+      "outputFile": "fable.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day4/data-fable.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day4/fable/",
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
+    },
+    {
+      "id": "jiuguang-day5-smoke",
+      "title": "我流奥义",
+      "source": "九光暑假第五天 T1",
+      "timeLimitMs": 1000,
+      "memoryLimitMb": 512,
+      "inputFile": "smoke.in",
+      "outputFile": "smoke.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day5/data-smoke.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day5/smoke/",
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      }
+    },
+    {
+      "id": "jiuguang-day5-stardust",
+      "title": "星语楠尘",
+      "source": "九光暑假第五天 T2",
+      "timeLimitMs": 2000,
+      "memoryLimitMb": 512,
+      "inputFile": "stardust.in",
+      "outputFile": "stardust.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day5/data-stardust.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day5/stardust/",
+      "tests": {
+        "count": 20,
+        "scoreEach": 5
+      },
+      "origin": "CF763A Timofey and a tree",
+      "originUrl": "https://www.luogu.com.cn/problem/CF763A"
+    },
+    {
+      "id": "jiuguang-day5-solwind",
+      "title": "日月风随",
+      "source": "九光暑假第五天 T3",
+      "timeLimitMs": 2000,
+      "memoryLimitMb": 512,
+      "inputFile": "solwind.in",
+      "outputFile": "solwind.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day5/data-solwind.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day5/solwind/",
+      "tests": {
+        "count": 25,
+        "scoreEach": 4
+      }
+    },
+    {
+      "id": "jiuguang-day5-revolt",
+      "title": "推翻暴政",
+      "source": "九光暑假第五天 T4",
+      "timeLimitMs": 2000,
+      "memoryLimitMb": 512,
+      "inputFile": "revolt.in",
+      "outputFile": "revolt.out",
+      "dataUrl": "https://ehundategh.github.io/Blog/assets/solution/jiuguang-summer/day5/data-revolt.zip",
+      "statementUrl": "https://ehundategh.github.io/Blog/solution/jiuguang-summer/day5/revolt/",
+      "tests": {
+        "count": 25,
+        "scoreEach": 4
+      }
     }
   ]
 }
