@@ -7,6 +7,7 @@
 ### 基础结构
 
 - [ST 表](st-table.md)
+- [树状数组](binary-indexed-tree.md)
 
 ### 平衡树
 
