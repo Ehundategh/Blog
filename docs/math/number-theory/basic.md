@@ -4,7 +4,9 @@
 
 基础数论中反复出现的线索可以概括为：带余除法给出同余，Euclid 算法给出最大公因数，Bézout 定理刻画逆元；再由质因数分解得到约数函数、Euler 函数，最后用简化剩余系推出 Euler 定理与 Fermat 小定理，并用 Dirichlet 卷积的语言引出 Möbius 函数与 Möbius 反演。
 
-## 整除与带余除法
+## 同余与最大公因数
+
+### 整除与带余除法
 
 给定 $a,b\in\mathbb Z$ 且 $b\ne 0$。若存在 $c\in\mathbb Z$ 使得 $a=bc$，则称 $b$ 整除 $a$，记作 $b\mid a$；否则记作 $b\nmid a$。
 
@@ -18,7 +20,7 @@
 
 ??? proof "证明"
 
-    取 $q=\left\lfloor\dfrac ab\right\rfloor$，$r=a-bq$。由下取整的定义立刻有 $0\le r<b$，所以存在性成立。
+    取 $q=\left\lfloor\dfrac{a}{b}\right\rfloor$，$r=a-bq$。由下取整的定义立刻有 $0\le r<b$，所以存在性成立。
 
     若另有 $a=bq'+r'$，其中 $0\le r'<b$，则
 
@@ -28,7 +30,7 @@
 
     右侧绝对值小于 $b$，左侧又是 $b$ 的倍数，所以两边只能同时为 $0$。于是 $q=q'$，$r=r'$。
 
-## 同余
+### 同余
 
 给定正整数 $m$，如果 $m\mid(a-b)$，就称 $a,b$ 在模 $m$ 意义下同余，记作
 
@@ -86,7 +88,7 @@ $$
 
 但是除法不能照搬这个结论。由 $ac\equiv bc\pmod m$ 一般不能直接约去 $c$；只有当 $c$ 在模 $m$ 意义下存在逆元时，才能把除以 $c$ 改写成乘上 $c$ 的逆元。
 
-## 同余类与剩余系
+### 同余类与剩余系
 
 给定模数 $m$，与整数 $a$ 同余的所有整数构成集合
 
@@ -118,7 +120,7 @@ $$
 
 例如，模 $10$ 中与 $10$ 互质的同余类为 $\{\overline1,\overline3,\overline7,\overline9\}$，取代表元后，$\{1,3,7,9\}$ 构成一个简化剩余系，所以 $\varphi(10)=4$。注意我们只关心每个数所在的同余类，因此 $\{11,13,17,19\}$ 也是模 $10$ 的简化剩余系。
 
-## 最大公因数
+### 最大公因数
 
 给定不全为 $0$ 的整数 $a,b$，同时整除 $a,b$ 的正整数称为它们的公因数，其中最大的一个称为最大公因数，记作 $\gcd(a,b)$。
 
@@ -156,7 +158,7 @@ int Gcd(int a,int b) {
 }
 ```
 
-## Bézout 定理
+### Bézout 定理
 
 ???+ theorem "Bézout 定理"
 
@@ -201,31 +203,77 @@ int ExGcd(int a,int b,int &x,int &y) {
 }
 ```
 
-这一过程也可以用矩阵来理解。对于一次辗转相除
+这一过程也可以用矩阵来理解。令初始状态向量为
 
 $$
-a=bq+r,\qquad q=\left\lfloor\dfrac ab\right\rfloor,
-$$
-
-有
-
-$$
-\begin{pmatrix}
-b\\
-r
-\end{pmatrix}
-=
-\begin{pmatrix}
-0&1\\
-1&-q
-\end{pmatrix}
+\boldsymbol{s}_0=
 \begin{pmatrix}
 a\\
 b
 \end{pmatrix}.
 $$
 
-也就是说，Euclid 算法中从 $(a,b)$ 变成 $(b,a\bmod b)$ 的过程，本质上是在左乘一个矩阵。连续做完辗转相除后，可以写成
+考虑某一轮辗转相除，若当前状态为
+
+$$
+\boldsymbol{s}=
+\begin{pmatrix}
+x\\
+y
+\end{pmatrix},
+$$
+
+且
+
+$$
+x=yq+r,\qquad q=\left\lfloor\dfrac{x}{y}\right\rfloor,
+$$
+
+那么下一轮状态应当变为 $(y,r)^T$。定义这一轮的变换矩阵
+
+$$
+\boldsymbol{P}_q=
+\begin{pmatrix}
+0&1\\
+1&-q
+\end{pmatrix}.
+$$
+
+则有
+
+$$
+\boldsymbol{P}_q\boldsymbol{s}
+=
+\begin{pmatrix}
+y\\
+x-qy
+\end{pmatrix}
+=
+\begin{pmatrix}
+y\\
+r
+\end{pmatrix}.
+$$
+
+也就是说，Euclid 算法中从 $(x,y)$ 变成 $(y,x\bmod y)$，等价于左乘一次 $\boldsymbol{P}_q$。
+
+接下来考虑如何维护从初始状态到当前状态的变换矩阵。若当前已经有
+
+$$
+\boldsymbol{s}=\boldsymbol{T}\boldsymbol{s}_0,
+$$
+
+再做一次辗转相除，则
+
+$$
+\boldsymbol{s}'
+=
+\boldsymbol{P}_q\boldsymbol{s}
+=
+\boldsymbol{P}_q\boldsymbol{T}\boldsymbol{s}_0.
+$$
+
+所以维护矩阵时，新矩阵应当是 $\boldsymbol{P}_q\boldsymbol{T}$，也就是新变换左乘旧变换。连续做完辗转相除后，可以得到
 
 $$
 \begin{pmatrix}
@@ -233,17 +281,17 @@ $$
 0
 \end{pmatrix}
 =
-T
+\boldsymbol{T}
 \begin{pmatrix}
 a\\
 b
 \end{pmatrix},
 $$
 
-其中 $T$ 是若干个形如 $\begin{pmatrix}0&1\\1&-q\end{pmatrix}$ 的矩阵乘积。若
+若
 
 $$
-T=
+\boldsymbol{T}=
 \begin{pmatrix}
 x_1&x_2\\
 x_3&x_4
@@ -259,29 +307,57 @@ $$
 这正是扩展 Euclid 算法中要求的系数。因此我们也可以直接维护这个 $2\times2$ 变换矩阵。
 
 ```cpp
+struct Matrix{
+    long long Num[3][3];
+    void Init(){
+        for(int i=1;i<=2;i++) for(int j=1;j<=2;j++) Num[i][j]=0;
+    }
+};
+Matrix operator*(Matrix a,Matrix b){
+    Matrix Ret;Ret.Init();
+    for(int i=1;i<=2;i++){
+        for(int j=1;j<=2;j++){
+            for(int k=1;k<=2;k++){
+                Ret.Num[i][j]+=a.Num[i][k]*b.Num[k][j];
+            }
+        }
+    }
+    return Ret;
+}
+Matrix Unit(){
+    Matrix Ret;Ret.Init();
+    Ret.Num[1][1]=Ret.Num[2][2]=1;
+    return Ret;
+}
+Matrix Make(int q){
+    Matrix Ret;Ret.Init();
+    Ret.Num[1][2]=1;
+    Ret.Num[2][1]=1;
+    Ret.Num[2][2]=-q;
+    return Ret;
+}
 int ExGcd_Matrix(int a,int b,int &x,int &y) {
-    int x1=1,x2=0,x3=0,x4=1;
+    Matrix Val=Unit();
     while (b) {
         int q=a/b;
-        int t1=x1,t2=x2,t3=x3,t4=x4;
-        x1=t3;x2=t4;
-        x3=t1-q*t3;x4=t2-q*t4;
+        Matrix Now=Make(q);
+        Val=Now*Val;
         int r=a-q*b;
         a=b;b=r;
     }
-    x=x1;y=x2;
+    x=Val.Num[1][1];y=Val.Num[1][2];
     return a;
 }
 ```
 
-这一写法和递归写法维护的是同一件事：递归写法在回溯时恢复系数，矩阵写法则在每一轮直接把线性变换乘上去。
+这一写法和递归写法维护的是同一件事：递归写法在回溯时恢复系数，矩阵写法则把每一轮变换直接左乘到 $\boldsymbol{T}$ 上。最后 $\boldsymbol{T}$ 的第一行就是 $\gcd(a,b)$ 关于初始 $a,b$ 的线性表示。
 
-## 模逆元
+### 模逆元
 
 若存在整数 $x$ 满足 $ax\equiv1\pmod m$，则称 $x$ 是 $a$ 模 $m$ 意义下的逆元，记作 $a^{-1}$。此时，模意义下的除法可以改写为
 
 $$
-\dfrac ba\equiv b\cdot a^{-1}\pmod m.
+\dfrac{b}{a}\equiv b\cdot a^{-1}\pmod m.
 $$
 
 ???+ theorem "逆元存在判别"
@@ -341,7 +417,7 @@ int Pow(int a,int b,int Mod) {
 }
 ```
 
-## 中国剩余定理
+### 中国剩余定理
 
 ???+ theorem "中国剩余定理"
 
@@ -386,7 +462,9 @@ int Pow(int a,int b,int Mod) {
 
     故 $s\mid q$，从而 $rs\mid n$。对两两互质的 $m_i$ 反复使用这一结论，得到 $M\mid(x-y)$，即 $x\equiv y\pmod M$，唯一性成立。
 
-## 质数与唯一分解
+## 数论函数
+
+### 质数与唯一分解
 
 大于 $1$ 的正整数 $p$，如果它的正因数只有 $1$ 和 $p$，就称 $p$ 为质数；大于 $1$ 且不是质数的正整数称为合数。
 
@@ -432,7 +510,7 @@ $$
 
 其中 $p_1,p_2,\ldots,p_k$ 是两两不同的质数，$\alpha_i\in\mathbb Z^+$。这一表示把关于因数的问题转化为了对每个指数 $\alpha_i$ 的独立选择。
 
-## 约数函数
+### 约数函数
 
 ???+ theorem "约数个数与约数和"
 
@@ -469,7 +547,7 @@ $$
 
     这正是所给的约数和公式。
 
-## Euler 函数
+### Euler 函数
 
 Euler 函数 $\varphi(n)$ 表示 $1,2,\ldots,n$ 中与 $n$ 互质的整数个数。等价地，它也是模 $n$ 的简化剩余系所含元素个数。
 
@@ -478,7 +556,7 @@ Euler 函数 $\varphi(n)$ 表示 $1,2,\ldots,n$ 中与 $n$ 互质的整数个数
     若 $p$ 为质数且 $k\in\mathbb Z^+$，则
 
     $$
-    \varphi(p^k)=p^k-p^{k-1}=p^k\left(1-\dfrac1p\right).
+    \varphi(p^k)=p^k-p^{k-1}=p^k\left(1-\dfrac{1}{p}\right).
     $$
 
 ??? proof "证明"
@@ -504,7 +582,7 @@ Euler 函数 $\varphi(n)$ 表示 $1,2,\ldots,n$ 中与 $n$ 互质的整数个数
     若 $n=\prod_{i=1}^k p_i^{\alpha_i}$，则
 
     $$
-    \varphi(n)=n\prod_{p\mid n}\left(1-\dfrac1p\right).
+    \varphi(n)=n\prod_{p\mid n}\left(1-\dfrac{1}{p}\right).
     $$
 
 ??? proof "证明"
@@ -516,9 +594,9 @@ Euler 函数 $\varphi(n)$ 表示 $1,2,\ldots,n$ 中与 $n$ 互质的整数个数
     =
     \prod_{i=1}^k\varphi(p_i^{\alpha_i})
     =
-    \prod_{i=1}^k p_i^{\alpha_i}\left(1-\dfrac1{p_i}\right)
+    \prod_{i=1}^k p_i^{\alpha_i}\left(1-\dfrac{1}{p_i}\right)
     =
-    n\prod_{i=1}^k\left(1-\dfrac1{p_i}\right).
+    n\prod_{i=1}^k\left(1-\dfrac{1}{p_i}\right).
     $$
 
 ???+ theorem "Euler 函数的约数和"
@@ -537,7 +615,7 @@ Euler 函数 $\varphi(n)$ 表示 $1,2,\ldots,n$ 中与 $n$ 互质的整数个数
 
 ??? proof "证明"
 
-    按照 $\gcd(k,n)$ 的值将 $1,2,\ldots,n$ 分类。对每个 $d\mid n$，满足 $\gcd(k,n)=\dfrac nd$ 的整数 $k$ 可写成 $k=\dfrac nd t$，条件等价于 $1\le t\le d$ 且 $\gcd(t,d)=1$，所以这一类恰有 $\varphi(d)$ 个。
+    按照 $\gcd(k,n)$ 的值将 $1,2,\ldots,n$ 分类。对每个 $d\mid n$，满足 $\gcd(k,n)=\dfrac{n}{d}$ 的整数 $k$ 可写成 $k=\dfrac{n}{d} t$，条件等价于 $1\le t\le d$ 且 $\gcd(t,d)=1$，所以这一类恰有 $\varphi(d)$ 个。
 
     所有类别不重不漏地覆盖了 $n$ 个整数，因此各类大小之和为 $n$。
 
@@ -583,7 +661,45 @@ void Init(int n) {
 }
 ```
 
-## Euler 定理与 Fermat 小定理
+## 定理与反演
+
+### Euler 定理与 Fermat 小定理
+
+???+ theorem "简化剩余系的乘法重排"
+
+    若 $\gcd(a,m)=1$，且 $r_1,r_2,\ldots,r_{\varphi(m)}$ 是模 $m$ 的一个简化剩余系，则
+
+    $$
+    ar_1,ar_2,\ldots,ar_{\varphi(m)}
+    $$
+
+    仍然是模 $m$ 的一个简化剩余系。
+
+??? proof "证明"
+
+    首先，任取 $i$，因为 $\gcd(a,m)=1$ 且 $\gcd(r_i,m)=1$，所以
+
+    $$
+    \gcd(ar_i,m)=1.
+    $$
+
+    也就是说，$ar_i$ 一定落在与 $m$ 互质的同余类中。
+
+    接下来只需要证明这些同余类两两不同。若存在 $i\ne j$ 使得
+
+    $$
+    ar_i\equiv ar_j\pmod m,
+    $$
+
+    由于 $\gcd(a,m)=1$，根据前面的约去同因子结论，可以得到
+
+    $$
+    r_i\equiv r_j\pmod m,
+    $$
+
+    这与 $r_1,r_2,\ldots,r_{\varphi(m)}$ 是简化剩余系矛盾。
+
+    因此 $ar_1,ar_2,\ldots,ar_{\varphi(m)}$ 恰好给出了所有与 $m$ 互质的同余类，也就是一个新的简化剩余系。
 
 ???+ theorem "Euler 定理"
 
@@ -595,7 +711,7 @@ void Init(int n) {
 
 ??? proof "证明"
 
-    取模 $m$ 的一个简化剩余系 $r_1,r_2,\ldots,r_{\varphi(m)}$。前面已经证明，$ar_1,ar_2,\ldots,ar_{\varphi(m)}$ 仍是一个简化剩余系，因此两组元素的乘积同余：
+    取模 $m$ 的一个简化剩余系 $r_1,r_2,\ldots,r_{\varphi(m)}$。由上一条结论，$ar_1,ar_2,\ldots,ar_{\varphi(m)}$ 仍是一个简化剩余系，因此两组元素的乘积同余：
 
     $$
     a^{\varphi(m)}
@@ -637,14 +753,14 @@ $$
 
 因此，模质数意义下的合法除法可以写成乘 $a^{p-2}$。计算一个由加、减、乘、除组成的式子时，加减乘随时取模；只有除法需要先检查分母是否为 $0\pmod p$，再乘逆元。这个条件不能省略。
 
-## Dirichlet 卷积
+### Dirichlet 卷积
 
 在数论函数中，经常会出现“对所有约数求和”的形式。为了把这类式子统一起来，我们定义 Dirichlet 卷积。
 
 设 $f,g$ 是定义在正整数上的函数，定义
 
 $$
-(f*g)(n)=\sum_{d\mid n}f(d)g\left(\dfrac nd\right).
+(f*g)(n)=\sum_{d\mid n}f(d)g\left(\dfrac{n}{d}\right).
 $$
 
 这里的求和变量 $d$ 遍历 $n$ 的所有正因数。这个定义的意义在于，它把“拆成两个互补约数”的贡献统一写成一个运算。
@@ -698,13 +814,13 @@ $$
     交换律直接来自互补约数的替换。具体地，
 
     $$
-    (f*g)(n)=\sum_{d\mid n}f(d)g\left(\dfrac nd\right).
+    (f*g)(n)=\sum_{d\mid n}f(d)g\left(\dfrac{n}{d}\right).
     $$
 
-    令 $e=\dfrac nd$，当 $d$ 遍历 $n$ 的因数时，$e$ 也恰好遍历 $n$ 的因数，于是
+    令 $e=\dfrac{n}{d}$，当 $d$ 遍历 $n$ 的因数时，$e$ 也恰好遍历 $n$ 的因数，于是
 
     $$
-    (f*g)(n)=\sum_{e\mid n}f\left(\dfrac ne\right)g(e)=(g*f)(n).
+    (f*g)(n)=\sum_{e\mid n}f\left(\dfrac{n}{e}\right)g(e)=(g*f)(n).
     $$
 
     接下来考虑结合律。展开左侧：
@@ -713,9 +829,9 @@ $$
     \begin{aligned}
     ((f*g)*h)(n)
     &=
-    \sum_{d\mid n}(f*g)(d)h\left(\dfrac nd\right)\\
+    \sum_{d\mid n}(f*g)(d)h\left(\dfrac{n}{d}\right)\\
     &=
-    \sum_{d\mid n}\sum_{e\mid d}f(e)g\left(\dfrac de\right)h\left(\dfrac nd\right).
+    \sum_{d\mid n}\sum_{e\mid d}f(e)g\left(\dfrac{d}{e}\right)h\left(\dfrac{n}{d}\right).
     \end{aligned}
     $$
 
@@ -724,10 +840,10 @@ $$
     最后，
 
     $$
-    (f*\varepsilon)(n)=\sum_{d\mid n}f(d)\varepsilon\left(\dfrac nd\right).
+    (f*\varepsilon)(n)=\sum_{d\mid n}f(d)\varepsilon\left(\dfrac{n}{d}\right).
     $$
 
-    只有 $\dfrac nd=1$，也就是 $d=n$ 时 $\varepsilon\left(\dfrac nd\right)=1$，其余项都为 $0$，所以 $(f*\varepsilon)(n)=f(n)$。
+    只有 $\dfrac{n}{d}=1$，也就是 $d=n$ 时 $\varepsilon\left(\dfrac{n}{d}\right)=1$，其余项都为 $0$，所以 $(f*\varepsilon)(n)=f(n)$。
 
     分配律直接展开即可：
 
@@ -735,11 +851,11 @@ $$
     \begin{aligned}
     (f*(g+h))(n)
     &=
-    \sum_{d\mid n}f(d)(g+h)\left(\dfrac nd\right)\\
+    \sum_{d\mid n}f(d)(g+h)\left(\dfrac{n}{d}\right)\\
     &=
-    \sum_{d\mid n}f(d)g\left(\dfrac nd\right)
+    \sum_{d\mid n}f(d)g\left(\dfrac{n}{d}\right)
     +
-    \sum_{d\mid n}f(d)h\left(\dfrac nd\right)\\
+    \sum_{d\mid n}f(d)h\left(\dfrac{n}{d}\right)\\
     &=
     (f*g)(n)+(f*h)(n).
     \end{aligned}
@@ -766,35 +882,35 @@ $$
     反过来，若 $f(1)\ne0$，则先令
 
     $$
-    g(1)=\dfrac1{f(1)}.
+    g(1)=\dfrac{1}{f(1)}.
     $$
 
     对于 $n>1$，由 $(f*g)(n)=0$ 可得
 
     $$
-    \sum_{d\mid n}f(d)g\left(\dfrac nd\right)=0.
+    \sum_{d\mid n}f(d)g\left(\dfrac{n}{d}\right)=0.
     $$
 
     将 $d=n$ 的一项单独取出：
 
     $$
     f(n)g(1)+
-    \sum_{\substack{d\mid n\\d<n}}f(d)g\left(\dfrac nd\right)=0.
+    \sum_{\substack{d\mid n\\d<n}}f(d)g\left(\dfrac{n}{d}\right)=0.
     $$
 
     更方便地，也可以将含 $g(n)$ 的 $d=1$ 一项取出：
 
     $$
     f(1)g(n)+
-    \sum_{\substack{d\mid n\\d>1}}f(d)g\left(\dfrac nd\right)=0.
+    \sum_{\substack{d\mid n\\d>1}}f(d)g\left(\dfrac{n}{d}\right)=0.
     $$
 
     因此
 
     $$
     g(n)=
-    -\dfrac1{f(1)}
-    \sum_{\substack{d\mid n\\d>1}}f(d)g\left(\dfrac nd\right).
+    -\dfrac{1}{f(1)}
+    \sum_{\substack{d\mid n\\d>1}}f(d)g\left(\dfrac{n}{d}\right).
     $$
 
     右侧只会用到 $g(t)$ 且 $t<n$ 的值，因此可以递推确定 $g(n)$。存在性与唯一性同时得到。
@@ -817,7 +933,7 @@ $$
     &=
     \sum_{d_1\mid a}\sum_{d_2\mid b}
     f(d_1d_2)
-    g\left(\dfrac a{d_1}\cdot\dfrac b{d_2}\right).
+    g\left(\dfrac{a}{d_1}\cdot\dfrac{b}{d_2}\right).
     \end{aligned}
     $$
 
@@ -826,8 +942,8 @@ $$
     $$
     \sum_{d_1\mid a}\sum_{d_2\mid b}
     f(d_1)f(d_2)
-    g\left(\dfrac a{d_1}\right)
-    g\left(\dfrac b{d_2}\right).
+    g\left(\dfrac{a}{d_1}\right)
+    g\left(\dfrac{b}{d_2}\right).
     $$
 
     将两重和拆开，得到
@@ -854,7 +970,7 @@ $$
 \mu * \mathbf 1=\varepsilon.
 $$
 
-## Möbius 函数
+### Möbius 函数
 
 Möbius 函数 $\mu(n)$ 定义为
 
@@ -914,7 +1030,7 @@ $$
     则
 
     $$
-    f(n)=\sum_{d\mid n}\mu(d)F\left(\dfrac nd\right).
+    f(n)=\sum_{d\mid n}\mu(d)F\left(\dfrac{n}{d}\right).
     $$
 
 ??? proof "证明"
@@ -942,7 +1058,7 @@ $$
     将其展开，便得到
 
     $$
-    f(n)=\sum_{d\mid n}\mu(d)F\left(\dfrac nd\right).
+    f(n)=\sum_{d\mid n}\mu(d)F\left(\dfrac{n}{d}\right).
     $$
 
     下面也可以直接按求和式验证。
@@ -951,7 +1067,7 @@ $$
 
     $$
     \begin{aligned}
-    \sum_{d\mid n}\mu(d)F\left(\dfrac nd\right)
+    \sum_{d\mid n}\mu(d)F\left(\dfrac{n}{d}\right)
     &=
     \sum_{d\mid n}\mu(d)\sum_{e\mid n/d}f(e)\\
     &=
