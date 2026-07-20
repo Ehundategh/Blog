@@ -7,3 +7,4 @@
 - [线段树基础](basic.md)
 - [扫描线](scanline.md)
 - [双半群模型](double-semigroup.md)
+- [线段树合并](merge.md)

@@ -80,6 +80,7 @@ nav:
           - 线段树基础: data-structure/segment-tree/basic.md
           - 扫描线: data-structure/segment-tree/scanline.md
           - 双半群模型: data-structure/segment-tree/double-semigroup.md
+          - 线段树合并: data-structure/segment-tree/merge.md
   - 字符串:
       - 总览: string/index.md
       - 字符串 Hash: string/hash.md
