@@ -104,6 +104,11 @@ nav:
       - 单调队列优化 DP: dp/monotone-queue.md
   - 图论:
       - 总览: graph/index.md
+      - Tarjan 与图连通性:
+          - 总览: graph/tarjan/index.md
+          - 强连通分量: graph/tarjan/scc.md
+          - 割点、桥与边双: graph/tarjan/cut-bridge-edcc.md
+          - 点双连通分量: graph/tarjan/vdcc.md
       - 树上问题:
           - 总览: graph/tree/index.md
           - 树的直径: graph/tree/diameter.md

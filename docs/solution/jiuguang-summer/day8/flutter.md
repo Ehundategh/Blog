@@ -29,9 +29,24 @@
 
 区间加会同时改变最大值与非最大值；历史最大值要求标记记录当前值变化与历史变化，因此代码中将最大值位置和其他位置分开维护。
 
+## 标记复合
+
+`Data` 维护区间长度、区间和、最大值、严格次大值、最大值个数与区间历史最大值。标记将元素分为“当前最大值”和“其余元素”两组，分别维护最终增加量与过程中的最大前缀增加量。
+
+规定 $A\circ B$ 表示先执行 $B$ 再执行 $A$。以最大值组为例：
+
+$$
+\begin{aligned}
+\operatorname{MaxAdd}_{A\circ B}&=\operatorname{MaxAdd}_B+\operatorname{MaxAdd}_A,\\
+\operatorname{MaxHis}_{A\circ B}&=\max\left(\operatorname{MaxHis}_B,\operatorname{MaxAdd}_B+\operatorname{MaxHis}_A\right).
+\end{aligned}
+$$
+
+区间加对应两组同时增加；当 $\operatorname{SecMax}<v<\operatorname{Max}$ 时，区间取最小值只使最大值组下降。不能整段执行时递归，沿用 Segment Tree Beats 的势能分析。
+
 ## 复杂度
 
-均摊复杂度为 $\mathcal{O}((n+q)\log n)$，空间复杂度为 $\mathcal{O}(n)$。
+均摊复杂度为 $\mathcal{O}((n+q)\log^2 n)$，空间复杂度为 $\mathcal{O}(n)$。
 
 ## 参考代码
 
