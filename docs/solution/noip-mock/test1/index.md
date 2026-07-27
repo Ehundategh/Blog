@@ -14,9 +14,9 @@
 | 题目 | 来源 | 时限 | Std | 数据点 |
 | --- | --- | --- | --- | --- |
 | 糖果店 | 改编自 [CF1282B1 K for the Price of One](https://www.luogu.com.cn/problem/CF1282B1) | $1\ \mathrm{s}$ | [candy.cpp](/Blog/assets/solution/noip-mock/test1/std/candy.cpp) | $20$ 组输入，$20$ 组答案 |
-| 清仓甩卖 | [CF808E Selling Souvenirs](https://www.luogu.com.cn/problem/CF808E) | $1\ \mathrm{s}$ | [sale.cpp](/Blog/assets/solution/noip-mock/test1/std/sale.cpp) | $25$ 组输入，$25$ 组答案 |
+| 清仓甩卖 | 削弱自 [CF808E Selling Souvenirs](https://www.luogu.com.cn/problem/CF808E) | $1\ \mathrm{s}$ | [sale.cpp](/Blog/assets/solution/noip-mock/test1/std/sale.cpp) | $25$ 组输入，$25$ 组答案 |
 | 树的价值 | 原创 | $2\ \mathrm{s}$ | [tree.cpp](/Blog/assets/solution/noip-mock/test1/std/tree.cpp) | $25$ 组输入，$25$ 组答案 |
-| 序列询问 | 改编自 [P15850 宝石](https://www.luogu.com.cn/problem/P15850) | $2\ \mathrm{s}$ | [query.cpp](/Blog/assets/solution/noip-mock/test1/std/query.cpp) | $20$ 组输入，$20$ 组答案 |
+| 序列询问 | 加强自 [P15850 宝石](https://www.luogu.com.cn/problem/P15850) | $2\ \mathrm{s}$ | [query.cpp](/Blog/assets/solution/noip-mock/test1/std/query.cpp) | $20$ 组输入，$20$ 组答案 |
 
 四题内存限制均为 $512\ \mathrm{MiB}$。
 
