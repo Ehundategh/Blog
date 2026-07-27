@@ -169,5 +169,13 @@ nav:
               - 雨霖铃: solution/jiuguang-summer/day8/rainbell.md
               - 金缕曲: solution/jiuguang-summer/day8/goldknot.md
               - 蝶恋花: solution/jiuguang-summer/day8/flutter.md
+      - NOIP 模拟赛:
+          - 总览: solution/noip-mock/index.md
+          - 第一试:
+              - 总览: solution/noip-mock/test1/index.md
+              - 糖果店: solution/noip-mock/test1/candy.md
+              - 清仓甩卖: solution/noip-mock/test1/sale.md
+              - 树的价值: solution/noip-mock/test1/tree.md
+              - 序列询问: solution/noip-mock/test1/query.md
   - 杂项:
       - 总览: misc/index.md

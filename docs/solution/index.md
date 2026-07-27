@@ -7,3 +7,4 @@
 ## 目录
 
 - [九光暑假](jiuguang-summer/index.md)
+- [NOIP 模拟赛](noip-mock/index.md)
