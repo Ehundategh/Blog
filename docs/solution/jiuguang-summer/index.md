@@ -59,3 +59,10 @@
 - [雨霖铃](day8/rainbell.md)
 - [金缕曲](day8/goldknot.md)
 - [蝶恋花](day8/flutter.md)
+
+### [第九天](day9/index.md) - 2026 年 7 月 28 日
+
+- [五轮启幽扉](day9/lock.md)
+- [双径会深庭](day9/cross.md)
+- [星脉聚流光](day9/energy.md)
+- [重彩书遗年](day9/paint.md)

@@ -169,6 +169,12 @@ nav:
               - 雨霖铃: solution/jiuguang-summer/day8/rainbell.md
               - 金缕曲: solution/jiuguang-summer/day8/goldknot.md
               - 蝶恋花: solution/jiuguang-summer/day8/flutter.md
+          - 第九天:
+              - 总览: solution/jiuguang-summer/day9/index.md
+              - 五轮启幽扉: solution/jiuguang-summer/day9/lock.md
+              - 双径会深庭: solution/jiuguang-summer/day9/cross.md
+              - 星脉聚流光: solution/jiuguang-summer/day9/energy.md
+              - 重彩书遗年: solution/jiuguang-summer/day9/paint.md
       - NOIP 模拟赛:
           - 总览: solution/noip-mock/index.md
           - 第一试:
