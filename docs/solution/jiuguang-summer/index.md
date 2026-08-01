@@ -66,3 +66,17 @@
 - [双径会深庭](day9/cross.md)
 - [星脉聚流光](day9/energy.md)
 - [重彩书遗年](day9/paint.md)
+
+### [第十天](day10/index.md) - 2026 年 7 月 30 日
+
+- [员题](day10/race.md)
+- [翻转字符](day10/flip.md)
+- [战争](day10/war.md)
+- [我们最好的最短路](day10/shortest.md)
+
+### [第十一天](day11/index.md) - 2026 年 8 月 1 日
+
+- [能量获取](day11/select.md)
+- [策划道路](day11/city.md)
+- [异色飞羽](day11/beads.md)
+- [战争游戏](day11/wargame.md)
