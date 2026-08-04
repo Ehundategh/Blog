@@ -80,3 +80,10 @@
 - [策划道路](day11/city.md)
 - [异色飞羽](day11/beads.md)
 - [战争游戏](day11/wargame.md)
+
+### [第十二天](day12/index.md) - 2026 年 8 月 3 日
+
+- [抢修计划](day12/repair.md)
+- [风眼定位](day12/locate.md)
+- [环锁解除](day12/circle.md)
+- [风暴止息](day12/calm.md)

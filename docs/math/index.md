@@ -10,3 +10,7 @@
 - [线性代数](linear-algebra/index.md)
 - [组合数学](combinatorics/index.md)
     - [容斥原理](combinatorics/inclusion-exclusion.md)
+- [概率论初步](probability/index.md)
+    - [概率的基本概念](probability/basic.md)
+    - [条件概率与 Bayes 公式](probability/conditional-bayes.md)
+    - [随机变量、期望与方差](probability/random-variable.md)

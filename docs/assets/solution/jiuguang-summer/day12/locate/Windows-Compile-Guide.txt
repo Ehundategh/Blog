@@ -1,0 +1,123 @@
+# Day 12 T2 风眼定位 Windows 编译教程
+
+## 1. 准备文件
+
+编译自己的程序时，请确保同一个目录中包含：
+
+```text
+grader.cpp
+locate.cpp
+locate.h
+```
+
+- `grader.cpp` 是本地交互库，其中包含 `main` 函数。
+- `locate.cpp` 是选手编写的程序，需要实现 `Init` 和 `Locate` 函数。
+- `locate.h` 是交互库头文件。
+
+不能只编译 `locate.cpp`，因为其中没有 `main` 函数。必须将 `grader.cpp` 和 `locate.cpp` 一起编译。
+
+## 2. 打开 PowerShell
+
+首先进入题目目录：
+
+```powershell
+cd "D:\Codex\Competition\Summer\day12\locate"
+```
+
+本机的 `g++.exe` 位于：
+
+```text
+D:\App\Environment\mingw64\bin\g++.exe
+```
+
+由于路径使用了引号，在 PowerShell 中需要在命令前添加 `&`。
+
+## 3. 编译自己的程序
+
+将自己的代码保存为 `locate.cpp`，然后执行：
+
+```powershell
+& "D:\App\Environment\mingw64\bin\g++.exe" grader.cpp locate.cpp -o locate.exe -O2 -std=c++14 -static
+```
+
+若命令没有输出错误信息，则编译成功，并会在当前目录生成 `locate.exe`。
+
+## 4. 编译标准程序
+
+当前题目目录中的标准程序名为 `std.cpp`，可以执行：
+
+```powershell
+& "D:\App\Environment\mingw64\bin\g++.exe" grader.cpp std.cpp -o locate.exe -O2 -std=c++14 -static
+```
+
+这条命令已经在本机验证，可以正常编译。
+
+## 5. 直接运行
+
+在 PowerShell 中执行：
+
+```powershell
+.\locate.exe
+```
+
+随后按照题面规定的本地测试格式输入数据。
+
+## 6. 使用输入文件测试
+
+假设测试数据保存在 `sample.in` 中，可以执行：
+
+```powershell
+Get-Content sample.in | .\locate.exe
+```
+
+也可以通过 `cmd` 使用传统的输入重定向：
+
+```powershell
+cmd /c "locate.exe < sample.in"
+```
+
+PowerShell 本身不能直接使用下面这种写法：
+
+```powershell
+.\locate.exe < sample.in
+```
+
+## 7. 将结果保存到文件
+
+执行：
+
+```powershell
+Get-Content sample.in | .\locate.exe | Set-Content result.txt
+```
+
+运行结果将保存在当前目录的 `result.txt` 中。
+
+## 8. 题面样例
+
+建立 `sample.in`，内容如下：
+
+```text
+0 2
+5
+5 1 4 2 3
+2
+1 2
+```
+
+正确输出为：
+
+```text
+Correct!
+Max queries used: 3
+Score ratio: 100%
+```
+
+## 9. 常见错误
+
+| 错误信息 | 原因与处理方法 |
+| --- | --- |
+| `g++.exe: error: locate.cpp: No such file or directory` | 当前目录中没有 `locate.cpp`。请检查文件名，或者先将自己的代码保存为 `locate.cpp`。 |
+| 无法将 `g++` 识别为命令 | `g++.exe` 没有加入系统 `PATH`。直接使用本教程给出的完整编译器路径即可。 |
+| `undefined reference to main` | 只编译了 `locate.cpp`。应当同时编译 `grader.cpp` 和 `locate.cpp`。 |
+| `Query` 参数不合法 | 每次询问必须满足 $1\leq l<r\leq n$，不能询问长度为 $1$ 的区间。 |
+| `Wrong answer` | `Locate` 返回的位置不正确。此时不是编译错误，需要检查算法实现。 |
