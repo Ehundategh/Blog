@@ -226,7 +226,7 @@ $$
 
     分别计算每盏灯最终亮起的概率。单盏灯的状态只有亮、灭两种，其概率满足一阶递推。
 
-??? success "解法"
+??? success "解法一：化为等比递推"
 
     定义指示变量 $X_i$ 表示第 $i$ 盏灯最终是否亮起。若最终总亮度为 $L$，则
 
@@ -256,11 +256,68 @@ $$
     连续递推 $k$ 次，得到
 
     $$
-    p_{i,k}=\dfrac12+left(a_i-\dfrac12\right)(1-2q_i)^k.
+    p_{i,k}=\dfrac12+\left(a_i-\dfrac12\right)(1-2q_i)^k.
     $$
 
     用区间差分求出全部 $c_i$，快速幂计算 $(1-2q_i)^k$，再累加 $w_ip_{i,k}$。
 
+??? success "解法二：矩阵快速幂加速递推"
+
+    不化出闭式，也可以直接对亮、灭两种状态的概率进行递推。令
+
+    $$
+    \boldsymbol{F}_{i,t}
+    =
+    \begin{bmatrix}
+    P(X_{i,t}=0)\\
+    P(X_{i,t}=1)
+    \end{bmatrix},
+    $$
+
+    其中 $X_{i,t}$ 表示经过 $t$ 轮后第 $i$ 盏灯的状态。若本轮没有翻转，状态不变；若本轮翻转，亮、灭两种状态交换。因此转移矩阵为
+
+    $$
+    \boldsymbol{M}_i
+    =
+    \begin{bmatrix}
+    1-q_i&q_i\\
+    q_i&1-q_i
+    \end{bmatrix},
+    $$
+
+    并且
+
+    $$
+    \boldsymbol{F}_{i,t+1}
+    =\boldsymbol{M}_i\boldsymbol{F}_{i,t}.
+    $$
+
+    初始状态为
+
+    $$
+    \boldsymbol{F}_{i,0}
+    =
+    \begin{bmatrix}
+    1-a_i\\
+    a_i
+    \end{bmatrix}.
+    $$
+
+    由于每一轮的转移矩阵完全相同，连续转移 $k$ 轮后有
+
+    $$
+    \boldsymbol{F}_{i,k}
+    =\boldsymbol{M}_i^k\boldsymbol{F}_{i,0}.
+    $$
+
+    矩阵从状态向量左侧作用，所以快速幂求出的 $\boldsymbol{M}_i^k$ 也应左乘初始向量。结果向量的第二个分量就是 $p_{i,k}$。最后由期望的线性性得到
+
+    $$
+    E(L)=\sum_{i=1}^{n}w_i\left(\boldsymbol{M}_i^k\boldsymbol{F}_{i,0}\right)_2.
+    $$
+
+    两种方法使用的转移完全相同。第一种方法将二阶线性变换化为一个等比数列；第二种方法则保留两个状态，直接计算转移矩阵的 $k$ 次幂。
+
 ??? abstract "复杂度分析"
 
-    时间复杂度为 $\mathcal{O}(m+n\log k)$，空间复杂度为 $\mathcal{O}(n)$。
+    区间差分复杂度为 $\mathcal{O}(m+n)$。对每盏灯使用标量快速幂或二阶矩阵快速幂，时间复杂度均为 $\mathcal{O}(m+n\log k)$，空间复杂度为 $\mathcal{O}(n)$。
