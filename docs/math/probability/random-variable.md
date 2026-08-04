@@ -266,54 +266,54 @@ $$
     不化出闭式，也可以直接对亮、灭两种状态的概率进行递推。令
 
     $$
-    \boldsymbol{F}_{i,t}
+    \boldsymbol{s}_{i,t}
     =
-    \begin{bmatrix}
+    \begin{pmatrix}
     P(X_{i,t}=0)\\
     P(X_{i,t}=1)
-    \end{bmatrix},
+    \end{pmatrix},
     $$
 
     其中 $X_{i,t}$ 表示经过 $t$ 轮后第 $i$ 盏灯的状态。若本轮没有翻转，状态不变；若本轮翻转，亮、灭两种状态交换。因此转移矩阵为
 
     $$
-    \boldsymbol{M}_i
+    \boldsymbol{T}_i
     =
-    \begin{bmatrix}
+    \begin{pmatrix}
     1-q_i&q_i\\
     q_i&1-q_i
-    \end{bmatrix},
+    \end{pmatrix},
     $$
 
     并且
 
     $$
-    \boldsymbol{F}_{i,t+1}
-    =\boldsymbol{M}_i\boldsymbol{F}_{i,t}.
+    \boldsymbol{s}_{i,t+1}
+    =\boldsymbol{T}_i\boldsymbol{s}_{i,t}.
     $$
 
     初始状态为
 
     $$
-    \boldsymbol{F}_{i,0}
+    \boldsymbol{s}_{i,0}
     =
-    \begin{bmatrix}
+    \begin{pmatrix}
     1-a_i\\
     a_i
-    \end{bmatrix}.
+    \end{pmatrix}.
     $$
 
     由于每一轮的转移矩阵完全相同，连续转移 $k$ 轮后有
 
     $$
-    \boldsymbol{F}_{i,k}
-    =\boldsymbol{M}_i^k\boldsymbol{F}_{i,0}.
+    \boldsymbol{s}_{i,k}
+    =\boldsymbol{T}_i^k\boldsymbol{s}_{i,0}.
     $$
 
-    矩阵从状态向量左侧作用，所以快速幂求出的 $\boldsymbol{M}_i^k$ 也应左乘初始向量。结果向量的第二个分量就是 $p_{i,k}$。最后由期望的线性性得到
+    矩阵从状态向量左侧作用，所以快速幂求出的 $\boldsymbol{T}_i^k$ 也应左乘初始向量。结果向量的第二个分量就是 $p_{i,k}$。最后由期望的线性性得到
 
     $$
-    E(L)=\sum_{i=1}^{n}w_i\left(\boldsymbol{M}_i^k\boldsymbol{F}_{i,0}\right)_2.
+    E(L)=\sum_{i=1}^{n}w_i\left(\boldsymbol{T}_i^k\boldsymbol{s}_{i,0}\right)_2.
     $$
 
     两种方法使用的转移完全相同。第一种方法将二阶线性变换化为一个等比数列；第二种方法则保留两个状态，直接计算转移矩阵的 $k$ 次幂。
