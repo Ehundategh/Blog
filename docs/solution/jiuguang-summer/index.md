@@ -87,3 +87,17 @@
 - [风眼定位](day12/locate.md)
 - [环锁解除](day12/circle.md)
 - [风暴止息](day12/calm.md)
+
+### [第十三天](day13/index.md) - 2026 年 8 月 16 日
+
+- [天地皆可往](day13/roam.md)
+- [单舟见京杭](day13/canal.md)
+- [新水濯旧隍](day13/moat.md)
+- [云止聆佳响](day13/echo.md)
+
+### [第十四天](day14/index.md) - 2026 年 8 月 17 日
+
+- [挑战不被发现](day14/apt.md)
+- [卡牌游戏](day14/poker.md)
+- [康神开播了](day14/kskbl.md)
+- [A 病毒](day14/cancer.md)
