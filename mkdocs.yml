@@ -218,5 +218,11 @@ nav:
               - 清仓甩卖: solution/noip-mock/test1/sale.md
               - 树的价值: solution/noip-mock/test1/tree.md
               - 序列询问: solution/noip-mock/test1/query.md
+          - 第二试:
+              - 总览: solution/noip-mock/test2/index.md
+              - 编辑字符串: solution/noip-mock/test2/edit.md
+              - 遗失的赋值: solution/noip-mock/test2/assign.md
+              - 树的遍历: solution/noip-mock/test2/traverse.md
+              - 树上查询: solution/noip-mock/test2/query.md
   - 杂项:
       - 总览: misc/index.md
